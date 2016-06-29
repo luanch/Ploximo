@@ -81,6 +81,13 @@ public class JogoController {
     }
     
     public boolean verificarCorretude (JogoTela jogo) {
+        System.out.println(imigrante.imigranteDeveEntrar());
+        if (tipo1 == null) {
+            if (imigrante.imigranteDeveEntrar())
+                return false;
+            else
+                return true;
+        }  
     if( (botao1.getText() != null) && (botao2.getText() != null) ){   
         if (!tipo1.equals("validade") || !tipo2.equals("validade")) {
             if (tipo1.equals(tipo2)) {
