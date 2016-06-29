@@ -57,7 +57,7 @@ public class DocumentosController {
 
     private Passaporte determinarErroEmPassaporte(Pessoa imigrante) throws IOException {
         Passaporte pass = imigrante.getPass();
-        int qualAtributo = rand.gerarInt(4);
+        int qualAtributo = rand.gerarInt(3);
         switch (qualAtributo) {
             case 0: //pais
                 pass.setPais(alterarPais(pass.getPais()));
@@ -70,9 +70,6 @@ public class DocumentosController {
                 break; 
             case 3: //erro é no nascimento
                 pass.setDataNascimento(Data.gerarDataAleatoria(1930,2000));
-                break;
-            case 4: //sexo
-                pass.setSexo(alterarSexo(pass.getSexo()));
                 break;
         }
         return pass;

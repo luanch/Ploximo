@@ -32,7 +32,7 @@ public class PessoaController {
         boolean terror = r.gerarBool();
         String peso = gerarPesoFormatado();
         String altura = gerarAlturaFormatada(peso);
-        char sexo = gerarSexo(r);
+        char sexo = gerarSexo(r, foto);
         String motivo = Motivo.gerar();
         String duracao = Duracao.gerar();
         terrorista = ehTerrorista(r);
@@ -64,7 +64,6 @@ public class PessoaController {
         System.out.println("passaporte"+pass);
         System.out.println("permissao"+perm);
         */
-        
         return pessoa;
     }
 
@@ -93,12 +92,11 @@ public class PessoaController {
         return deveSerTerrorista;
     }
 
-    private char gerarSexo(Randomizador rand) {
-        boolean sorte;
-        char sexo;
-        sorte = rand.gerarBool();
-        if(sorte){sexo = 'M';}else{sexo = 'F';}
-        return sexo;
+    private char gerarSexo(Randomizador rand, String foto) {
+        if(foto.contains("M")){
+            return 'M';
+        }
+        return 'F';
     }
 
     private String gerarPesoFormatado() {

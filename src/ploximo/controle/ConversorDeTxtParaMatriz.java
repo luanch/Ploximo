@@ -34,5 +34,4 @@ public class ConversorDeTxtParaMatriz { //converte o texto em matriz
          }
         return mapa;
     }
-     
 }

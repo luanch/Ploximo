@@ -296,6 +296,7 @@ public class JogoTela extends javax.swing.JFrame {
         });
         passPainel.add(passNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 110, 20));
 
+        passPais.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         passPais.setContentAreaFilled(false);
         passPais.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         passPais.addActionListener(new java.awt.event.ActionListener() {
@@ -303,7 +304,7 @@ public class JogoTela extends javax.swing.JFrame {
                 passPaisActionPerformed(evt);
             }
         });
-        passPainel.add(passPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 110, 20));
+        passPainel.add(passPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 120, 20));
 
         passVal.setContentAreaFilled(false);
         passVal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
