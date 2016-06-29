@@ -37,13 +37,14 @@ public class DocumentosController {
     
     private Identidade determinarErroEmIdentidade(Pessoa imigrante) throws IOException {
         Identidade id = imigrante.getId();
+        char sexo = imigrante.getSexo();
         int qualAtributo = rand.gerarInt(3);
         switch (qualAtributo) {
             case 0: //erro é no peso
                 id.setPeso(alterarPeso(id.getPeso()));
                 break;
             case 1: //erro é no nome
-                id.setNome(alterarNome(id.getNome()));
+                id.setNome(alterarNome(id.getNome(), sexo));
                 break;
             case 2: //erro é no nascimento
                 id.setDataNascimento(Data.gerarDataAleatoria(1930,2000));
@@ -57,13 +58,14 @@ public class DocumentosController {
 
     private Passaporte determinarErroEmPassaporte(Pessoa imigrante) throws IOException {
         Passaporte pass = imigrante.getPass();
+        char sexo = imigrante.getSexo();
         int qualAtributo = rand.gerarInt(3);
         switch (qualAtributo) {
             case 0: //pais
                 pass.setPais(alterarPais(pass.getPais()));
                 break;
             case 1: //erro é no nome
-                pass.setNome(alterarNome(pass.getNome()));
+                pass.setNome(alterarNome(pass.getNome(), sexo));
                 break;
             case 2: //validade
                 pass.setValidade(Data.gerarDataAleatoria(2013,2015));
@@ -77,13 +79,14 @@ public class DocumentosController {
     
     private Permissao determinarErroEmPermissao(Pessoa imigrante) throws IOException {
         Permissao perm = imigrante.getPerm();
+        char sexo = imigrante.getSexo();
         int qualAtributo = rand.gerarInt(4);
         switch (qualAtributo) {
             case 0: //peso
                 perm.setPeso(alterarPeso(perm.getPeso()));
                 break;
             case 1: //erro é no nome
-                perm.setNome(alterarNome(perm.getNome()));
+                perm.setNome(alterarNome(perm.getNome(), sexo));
                 break;
             case 2: //pais
                 perm.setNacionalidade(alterarPais(perm.getNacionalidade()));
@@ -114,10 +117,13 @@ public class DocumentosController {
         return stringPesoAlterado;
     }
 
-    private String alterarNome(String nomeAntigo) throws IOException {
+    private String alterarNome(String nomeAntigo, char sexo) throws IOException {
         String nomeNovo;
         while(true){
-            nomeNovo = Nome.gerar();
+            if(sexo == 'H')
+                nomeNovo = Nome.gerarHomem();
+            else
+                nomeNovo = Nome.gerarMulher();
             if(!nomeAntigo.equals(nomeNovo)){
                 break;
             }
@@ -128,7 +134,7 @@ public class DocumentosController {
     private String alterarPais(String paisAntigo) throws IOException {
         String paisNovo;
         while(true){
-            paisNovo = Nome.gerar();
+            paisNovo = Pais.gerar();
             if(!paisAntigo.equals(paisNovo)){
                 break;
             }
@@ -137,8 +143,8 @@ public class DocumentosController {
     }
 
     private char alterarSexo(char sexo) {
-        if(sexo == 'M')
-            return 'F';
-        return 'M';
+        if(sexo == 'H')
+            return 'M';
+        return 'H';
     }
 }

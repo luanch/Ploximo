@@ -26,7 +26,6 @@ public class PessoaController {
     public Pessoa gerar() throws IOException{
         String foto = Foto.gerar();
         String nacionalidade = Nacionalidade.gerar();
-        String nome = Nome.gerar();
         GregorianCalendar nascimento = Data.gerarDataAleatoria(1940, 2000);
         String stringData = FormatadorDeDatas.getDataFormatada(nascimento);
         boolean terror = r.gerarBool();
@@ -37,7 +36,13 @@ public class PessoaController {
         String duracao = Duracao.gerar();
         terrorista = ehTerrorista(r);
         deveEntrar = deveEntrar(r);
-        
+        String nome;
+        if(sexo == 'M'){
+            nome = Nome.gerarHomem();
+        }
+        else
+            nome = Nome.gerarMulher();
+
         Pessoa pessoa = new Pessoa(nome,nascimento, sexo, nacionalidade,
                                     peso, altura, foto, motivo, duracao, terrorista, deveEntrar);
         PassaporteController pC = new PassaporteController();
@@ -93,10 +98,10 @@ public class PessoaController {
     }
 
     private char gerarSexo(Randomizador rand, String foto) {
-        if(foto.contains("M")){
-            return 'M';
+        if(foto.contains("H")){
+            return 'H';
         }
-        return 'F';
+        return 'M';
     }
 
     private String gerarPesoFormatado() {
