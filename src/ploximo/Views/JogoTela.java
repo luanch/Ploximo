@@ -296,7 +296,6 @@ public class JogoTela extends javax.swing.JFrame {
         });
         passPainel.add(passNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 110, 20));
 
-        passPais.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         passPais.setContentAreaFilled(false);
         passPais.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         passPais.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +303,7 @@ public class JogoTela extends javax.swing.JFrame {
                 passPaisActionPerformed(evt);
             }
         });
-        passPainel.add(passPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 120, 20));
+        passPainel.add(passPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 110, 20));
 
         passVal.setContentAreaFilled(false);
         passVal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -590,7 +589,6 @@ public class JogoTela extends javax.swing.JFrame {
     private void passValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passValActionPerformed
         jogoController.limitarCliques(passVal, "validade");
         prioridadeExibicao(passPainel);
-
     }//GEN-LAST:event_passValActionPerformed
 
     private void passSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passSexoActionPerformed
@@ -602,7 +600,6 @@ public class JogoTela extends javax.swing.JFrame {
     private void passPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passPaisActionPerformed
         jogoController.limitarCliques(passPais, "pais");
         prioridadeExibicao(passPainel);
-
     }//GEN-LAST:event_passPaisActionPerformed
 
     private void passNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passNascActionPerformed
@@ -614,7 +611,6 @@ public class JogoTela extends javax.swing.JFrame {
     private void permPassCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permPassCodActionPerformed
         jogoController.limitarCliques(permPassCod, "codigo do passaporte");
         prioridadeExibicao(permPainel);
-
     }//GEN-LAST:event_permPassCodActionPerformed
 
     private void permNacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permNacioActionPerformed
@@ -825,18 +821,26 @@ public class JogoTela extends javax.swing.JFrame {
     private void prioridadeExibicao(JLayeredPane painel) {
         Container jp = this.getContentPane();
         if(painel != passPainel){
-           jp.setComponentZOrder(passPainel, 3);
-       } 
+            jp.setComponentZOrder(passPainel, 3);
+            passPainel.setVisible(!passPainel.isVisible());
+            passPainel.setVisible(!passPainel.isVisible());
+        } 
         if(painel != permPainel){
-           jp.setComponentZOrder(permPainel, 4);
-       }
+            jp.setComponentZOrder(permPainel, 4);
+            permPainel.setVisible(!permPainel.isVisible());
+            permPainel.setVisible(!permPainel.isVisible());
+        }
         if(painel!= idPainel){
-           jp.setComponentZOrder(idPainel, 2);
+            jp.setComponentZOrder(idPainel, 2);
+            idPainel.setVisible(!idPainel.isVisible());
+            idPainel.setVisible(!idPainel.isVisible());
 
-       }
+        }
         if(painel!= regrasPainel){
-           jp.setComponentZOrder(regrasPainel, 5);
-       }
+            jp.setComponentZOrder(regrasPainel, 5);
+            regrasPainel.setVisible(!regrasPainel.isVisible());
+            regrasPainel.setVisible(!regrasPainel.isVisible());
+        }
         jp.setComponentZOrder(painel, 1);
     }
     
@@ -1083,5 +1087,4 @@ public class JogoTela extends javax.swing.JFrame {
     public void setCronometroLabel(JLabel cronometroLabel) {
         this.cronometroLabel = cronometroLabel;
     }
-    
 }
