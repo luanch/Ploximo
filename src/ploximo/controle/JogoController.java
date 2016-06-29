@@ -50,11 +50,8 @@ public class JogoController {
         tela.setSize(fundo.getWidth()+10, fundo.getHeight()+TAMANHO_BARRA_SUPERIOR);
     }
     
-    /*
-    * função chamada quando o usuário clica em negar no jogotela. retorna true
-    * quando usuario acertou o erro e false quando errou tudo
-    */
-    
+
+   
      public String insertNome(){
         String nome = JOptionPane.showInputDialog("INSIRA SEU NOME: ");
         return nome;   
@@ -65,62 +62,66 @@ public class JogoController {
       System.out.println("Seu nome, " + nome + ", foi inserido nos recordes com sucesso.");
     }
     
-    public void calcularPontuação(JogoTela jogo, Pontuacao pontuacao){
-    
-        int pontuação = 0;
+    public void calcularPontuacao(JogoTela jogo, Pontuacao pontuacao){
+        JLabel pontuacaoLabel = jogo.getPontuacaoLabel();
         
+        String[] pontuacaoArray = pontuacaoLabel.getText().split(" ");
         if(verificarCorretude(jogo)){
-          pontuação ++;
-          pontuacao.setPontos(pontuacao.getPontos()+pontuação);
+            pontuacao.setPontos(pontuacao.getPontos()+1);
+            pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
         }
         else{
-          pontuação --;
-          pontuacao.setPontos(pontuacao.getPontos()+pontuação);
+            pontuacao.setPontos(pontuacao.getPontos()-1);
+            pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
+
         }
-        System.out.println("Pontos adicionados");
     }
     
+    /**
+    * função chamada quando o usuário clica em negar no jogotela.Recebe jogo  e
+    * retorna true quando usuario acertou o erro e false quando errou tudo
+    * @param jogo
+    * @return 
+    */
     public boolean verificarCorretude (JogoTela jogo) {
         System.out.println(imigrante.imigranteDeveEntrar());
         if (tipo1 == null) {
-            if (imigrante.imigranteDeveEntrar())
-                return false;
-            else
-                return true;
+            return !imigrante.imigranteDeveEntrar();
         }  
-    if( (botao1.getText() != null) && (botao2.getText() != null) ){   
-        if (!tipo1.equals("validade") || !tipo2.equals("validade")) {
-            if (tipo1.equals(tipo2)) {
-                if (!botao1.getText().equals(botao2.getText())) {
-                    return true;
+        if( (botao1.getText() != null) && (botao2.getText() != null) ){   
+            if (!tipo1.equals("validade") || !tipo2.equals("validade")) {
+                if (tipo1.equals(tipo2)) {
+                    if (!botao1.getText().equals(botao2.getText())) {
+                        return true;
+                    }
+                }
+            }
+            else {
+                if (tipo2.equals("validade") && tipo1.equals("data atual")) {
+                    if (tipo2.contains("2013") || tipo2.contains("2014") 
+                                || tipo2.contains("2015")) {
+                        return true;
+                    }
+                }
+                else {
+                    if (tipo1.equals("validade") && tipo2.equals("data atual")) {
+                        if (tipo1.contains("2013") || tipo1.contains("2014") 
+                                || tipo1.contains("2015")) {
+                                return true;
+                        }
+                    }
                 }
             }
         }
         else {
-            if (tipo2.equals("validade") && tipo1.equals("data atual")) {
-                if (tipo2.contains("2013") || tipo2.contains("2014") 
-                            || tipo2.contains("2015")) {
-                    return true;
-                }
+            if( ((botao1.getText() != null) && (botao2.getText() == null)) || 
+                 ((botao1.getText() == null) && (botao2.getText() != null)) ){
+              return true;    
             }
-            else 
-                if (tipo1.equals("validade") && tipo2.equals("data atual")) {
-                    if (tipo1.contains("2013") || tipo1.contains("2014") 
-                            || tipo1.contains("2015")) {
-                            return true;
-                    }
-                }
         }
-    }
-    else 
-        if( ((botao1.getText() != null) && (botao2.getText() == null)) || ((botao1.getText() == null) && (botao2.getText() != null)) ){
-          return true;    
-        }
-            return false;
+        return false;
     }
     
-    
-
     public void chamarImigrante(JogoTela jogo) {
         if (imigrante == null) {
              try {
@@ -275,14 +276,6 @@ public class JogoController {
             //Foto foto = new Foto();
             //foto.retirarImagemNoBotao(jogo.getPessoaBotao());     
         }   
-    }
-
-    public JButton getBotao1() {
-        return botao1;
-    }
-
-    public JButton getBotao2() {
-        return botao2;
     }
 
     public void ataqueTerrista(JogoTela jogo,Pontuacao ponto) {
