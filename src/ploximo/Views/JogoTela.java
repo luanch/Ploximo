@@ -690,9 +690,13 @@ public class JogoTela extends javax.swing.JFrame {
     }//GEN-LAST:event_pessoaBotaoActionPerformed
 
     private void aprovarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprovarBotaoActionPerformed
-            temPessoa = false;
+            if (temPessoa) {
+                jogoController.calcularPontuacao(this,this.pontos);
+                temPessoa = false;
+            
+            
             try {
-                jogoController.negarImigrante(this);
+                jogoController.aprovarImigrante(this);
             } catch (Throwable ex) {
                 Logger.getLogger(JogoTela.class.getName()).log(Level.SEVERE,
                                                                     null, ex);
@@ -733,6 +737,9 @@ public class JogoTela extends javax.swing.JFrame {
          );
                 jogoController.ataqueTerrista(this,pontos);
            }
+            }
+        
+        
             
     }//GEN-LAST:event_aprovarBotaoActionPerformed
 
