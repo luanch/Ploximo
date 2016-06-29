@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import ploximo.Models.Cronometro;
 import ploximo.Models.Pessoa;
 import ploximo.controle.Data;
 import ploximo.controle.JogoController;
@@ -30,7 +31,6 @@ public class JogoTela extends javax.swing.JFrame {
     JogoController jogoController = new JogoController();
     PessoaController pc = new PessoaController();
     boolean temPessoa = false;
-    
     JButton botao1;
     JButton botao2;
     Pontuacao pontos = new Pontuacao();
@@ -46,8 +46,8 @@ public class JogoTela extends javax.swing.JFrame {
         passFoto.setEnabled(false);
         pessoaBotao.setEnabled(false);
         
-        JButton botao1 = new JButton();
-        JButton botao2 = new JButton();
+        Cronometro cronometro = new Cronometro(cronometroLabel);
+        cronometro.start();
         boolean botao1Bool = false;
         boolean botao2Bool = false;
         
@@ -117,6 +117,7 @@ public class JogoTela extends javax.swing.JFrame {
         idPeso = new javax.swing.JButton();
         idNome = new javax.swing.JButton();
         identidade = new javax.swing.JLabel();
+        cronometroLabel = new javax.swing.JLabel();
         idMiniBotao = new javax.swing.JButton();
         permMiniBotao = new javax.swing.JButton();
         passMiniBotao = new javax.swing.JButton();
@@ -388,6 +389,11 @@ public class JogoTela extends javax.swing.JFrame {
 
         getContentPane().add(idPainel);
         idPainel.setBounds(770, 470, 320, 220);
+
+        cronometroLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cronometroLabel.setText("05:00");
+        getContentPane().add(cronometroLabel);
+        cronometroLabel.setBounds(1130, 10, 60, 30);
 
         idMiniBotao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ploximo/Imagens/identidademini.png"))); // NOI18N
         idMiniBotao.addActionListener(new java.awt.event.ActionListener() {
@@ -758,6 +764,7 @@ public class JogoTela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aprovarBotao;
     private javax.swing.JLabel ataqueLabel;
+    private javax.swing.JLabel cronometroLabel;
     private javax.swing.JButton dataBotao;
     private javax.swing.JLabel fundo;
     private javax.swing.JButton idAlt;
