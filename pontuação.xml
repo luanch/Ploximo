@@ -6,9 +6,6 @@
     <void property="nome">
      <string>Fernando</string>
     </void>
-    <void property="pontos">
-     <int>1</int>
-    </void>
    </object>
   </void>
  </array>

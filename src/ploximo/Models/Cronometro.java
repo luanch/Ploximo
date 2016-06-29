@@ -5,42 +5,57 @@
  */
 package ploximo.Models;
 
+import javax.swing.JLabel;
+import ploximo.Views.JogoTela;
+import ploximo.controle.JogoController;
+import ploximo.controle.Pontuacao;
+
 /**
  *
  * @author Luan
  */
 public class Cronometro extends Thread{
-    public Cronometro() {    
-    }  
-  
-    public String iniciar() {  
-       try {  
-            int segundo = 0;  
-            int minuto = 5;  
-            while( true ) {  
-                Thread.sleep(1000);      
-                segundo--;  
-                if( segundo < 0 ){  
-                    segundo = 59;  
-                    minuto = minuto-1;  
-                }  
-                String timer = completaComZero(minuto) + ":" +  
-                               completaComZero(segundo);  
-                return timer;
-            }  
-        } catch (InterruptedException ex) {  
-            System.out.println("Erro no Cronômetro");
-            return "";
-        }  
-    }  
-
-    private String completaComZero(Integer i) {  
-        String retorno = null;  
-        if( i < 10 ) {  
-            retorno = "0"+i;  
-        } else {  
-            retorno = i.toString();  
-        }  
-        return retorno;  
-    }  
+    private final JogoTela jt;
+    private final JogoController jogoController = new JogoController();
+    private final JLabel hr;
+    public Cronometro(JogoTela jogoTela) {
+        this.jt = jogoTela;
+        this.hr = jogoTela.getCronometroLabel();
+    }
+    @Override
+    public void run() {
+        
+        try {
+    	   int segundo = 0;
+           int minuto = 5;
+           while(true) {
+                Thread.sleep(1000);
+                segundo--;
+                if( segundo < 0){
+                    segundo = 59;
+                    if(minuto != 0)
+                        minuto = minuto-1;
+                    else
+                        break;
+                }
+                String timer =  completaComZero(minuto) + ":" +
+                                completaComZero(segundo);
+                this.hr.setText(timer);
+                this.hr.revalidate();
+            }
+        } catch (InterruptedException ex) {
+           ex.printStackTrace();
+        }
+        Pontuacao pt = new Pontuacao();
+        jogoController.terminarDia(jt, 0,pt);
+    }
+    private String completaComZero(Integer i) {
+        String retorno = null;
+        if( i < 10 ) {
+            retorno = "0"+i;
+        } else {
+            retorno = i.toString();
+        }
+        return retorno;
+    }
 }
