@@ -17,17 +17,14 @@ import ploximo.Models.Pessoa;
 public class PermissaoController {
     
     public Permissao gerar(Pessoa pessoa) throws IOException{
-        
-    Randomizador rand = new Randomizador();
     
     String nome = pessoa.getNome();
-    String cod = Codigo.gerar();
+    String cod = pessoa.getCodigo();
     String duracao = Duracao.gerar();
     String peso = pessoa.getPeso();
     String altura = pessoa.getAltura();
     String motivo = Motivo.gerar();
     String pais = pessoa.getNacionalidade();
-            
 
     GregorianCalendar validade = Data.gerarDataAleatoria(2017, 2020);
    

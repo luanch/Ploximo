@@ -31,9 +31,12 @@ public class Pessoa {
     private Identidade id;
     private Passaporte pass;
     private Permissao perm;
+    private String codigo;
 
     public Pessoa(String nome, GregorianCalendar data, char sexo, 
-            String nacionalidade, String peso, String altura, String foto, String motivo, String duracao, boolean terrorista, boolean deveEntrar) {
+            String nacionalidade, String peso, String altura, String foto,
+            String motivo, String duracao, boolean terrorista,
+            boolean deveEntrar, String codigo) {
         this.nome = nome;
         this.nascimento = data;
         this.sexo = sexo;
@@ -45,6 +48,7 @@ public class Pessoa {
         this.duracao = duracao;
         this.terrorista = terrorista;
         this.deveEntrar = deveEntrar;
+        this.codigo = codigo;
        
     }
     
@@ -122,7 +126,13 @@ public class Pessoa {
         this.perm = perm;
     }
 
-    
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
      
     public String getDataFormatada(GregorianCalendar data){
         StringBuilder dataFormatada = new StringBuilder();
