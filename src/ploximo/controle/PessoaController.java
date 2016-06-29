@@ -6,6 +6,8 @@
 package ploximo.controle;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.GregorianCalendar;
 import ploximo.Models.Identidade;
 import ploximo.Models.Passaporte;
@@ -25,7 +27,7 @@ public class PessoaController {
         String foto = Foto.gerar();
         String nacionalidade = Nacionalidade.gerar();
         String nome = Nome.gerar();
-        GregorianCalendar nascimento = Data.gerarDataAleatoria(1900, 2000);
+        GregorianCalendar nascimento = Data.gerarDataAleatoria(1940, 2000);
         String stringData = FormatadorDeDatas.getDataFormatada(nascimento);
         boolean terror = r.gerarBool();
         String peso = gerarPesoFormatado();
@@ -103,11 +105,15 @@ public class PessoaController {
         return Double.toString(r.gerarInt(50)+ 60 + r.gerarDouble()).replace('.', ',').concat(" kg");
     } 
 
-    private String gerarAlturaFormatada(String stringPeso) {
+     private String gerarAlturaFormatada(String stringPeso) {
         String[] arrayPeso = stringPeso.split(" ");
         double peso = Double.valueOf(arrayPeso[0].replace(',', '.'));
         double porcentPeso = ((peso-10)%100)/100;
-        return Double.toString(1 + ((double)r.gerarInt(20))/100+porcentPeso).replace('.', ',').concat(" m");
+        return Double.toString(formatarDouble(1 + ((double)r.gerarInt(20))/100+porcentPeso)).replace('.', ',').concat(" m");
+    }
 
+    private double formatarDouble(double d) {
+        BigDecimal bd = new BigDecimal(d).setScale(2, RoundingMode.HALF_EVEN);
+        return bd.doubleValue();
     }
 }

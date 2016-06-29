@@ -47,7 +47,7 @@ public class JogoController {
     
     public void iniciarMeusComponentes(JFrame tela, JLabel fundo){
         tela.setLocation(0, 0);
-        tela.setSize(fundo.getWidth(), fundo.getHeight()+TAMANHO_BARRA_SUPERIOR);
+        tela.setSize(fundo.getWidth()+10, fundo.getHeight()+TAMANHO_BARRA_SUPERIOR);
     }
     
     /*

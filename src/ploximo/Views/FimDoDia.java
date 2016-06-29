@@ -20,7 +20,6 @@ public class FimDoDia extends javax.swing.JFrame {
      */
     public FimDoDia(Pontuacao pt) {
         initComponents();
-        initComponents();
         
         this.pontos = pt;
         

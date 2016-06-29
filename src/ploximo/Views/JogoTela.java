@@ -174,6 +174,7 @@ public class JogoTela extends javax.swing.JFrame {
 
         permPainel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        permPassCod.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         permPassCod.setContentAreaFilled(false);
         permPassCod.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         permPassCod.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +184,7 @@ public class JogoTela extends javax.swing.JFrame {
         });
         permPainel.add(permPassCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 80, 20));
 
+        permNacio.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         permNacio.setContentAreaFilled(false);
         permNacio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         permNacio.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +194,7 @@ public class JogoTela extends javax.swing.JFrame {
         });
         permPainel.add(permNacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 90, 20));
 
+        permMotivo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         permMotivo.setContentAreaFilled(false);
         permMotivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         permMotivo.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +213,7 @@ public class JogoTela extends javax.swing.JFrame {
         });
         permPainel.add(permAlt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 90, 20));
 
+        permDuracao.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         permDuracao.setContentAreaFilled(false);
         permDuracao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         permDuracao.addActionListener(new java.awt.event.ActionListener() {

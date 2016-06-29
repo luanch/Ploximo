@@ -23,15 +23,12 @@ public class DocumentosController {
         int qualDocumento = rand.gerarInt(2); // 1 é identidade, 2 é passaporte, 3 permissão
         switch (qualDocumento) {
             case 0:
-                System.out.println("perm");
                 imigrante.setPerm(determinarErroEmPermissao(imigrante));
                 break; 
             case 1:
-                System.out.println("id");
                 imigrante.setId(determinarErroEmIdentidade(imigrante));
                 break;
             case 2:   
-                System.out.println("pass");
                 imigrante.setPass(determinarErroEmPassaporte(imigrante));
                 break;
         }
@@ -39,118 +36,67 @@ public class DocumentosController {
     }
     
     private Identidade determinarErroEmIdentidade(Pessoa imigrante) throws IOException {
-        System.out.println("Dentro de id "+ imigrante);
         Identidade id = imigrante.getId();
         int qualAtributo = rand.gerarInt(3);
         switch (qualAtributo) {
             case 0: //erro é no peso
-                System.out.println("ALOO peso");
                 id.setPeso(alterarPeso(id.getPeso()));
-                System.out.println("ALOO peso passei");
                 break;
             case 1: //erro é no nome
-                System.out.println("ALOO nome");
                 id.setNome(alterarNome(id.getNome()));
-                System.out.println("ALOO nome passei");
                 break;
             case 2: //erro é no nascimento
-                System.out.println("ALOO nasc");
                 id.setDataNascimento(Data.gerarDataAleatoria(1930,2000));
-                System.out.println("ALOO nasc passei");
                 break;
             case 3: //erro é na altura
-                
-                System.out.println("ALOO altura");
-
                 id.setAltura(alterarAltura(id.getAltura()));
-                System.out.println("ALOO altura passei");
-
                 break;
         }   
         return id;
     }
 
     private Passaporte determinarErroEmPassaporte(Pessoa imigrante) throws IOException {
-        System.out.println("Dentro de pass "+ imigrante);
         Passaporte pass = imigrante.getPass();
         int qualAtributo = rand.gerarInt(4);
         switch (qualAtributo) {
             case 0: //pais
-                System.out.println("ALOO pais");
                 pass.setPais(alterarPais(pass.getPais()));
-                System.out.println("ALOO pais passei");
-
                 break;
             case 1: //erro é no nome
-                System.out.println("ALOO nome");
                 pass.setNome(alterarNome(pass.getNome()));
-                System.out.println("ALOO nome passei");
                 break;
             case 2: //validade
-                System.out.println("ALOO valid");
-
                 pass.setValidade(Data.gerarDataAleatoria(2013,2015));
-                System.out.println("ALOO valid passei");
-
                 break; 
             case 3: //erro é no nascimento
-                System.out.println("ALOO nasc");
-
                 pass.setDataNascimento(Data.gerarDataAleatoria(1930,2000));
-                System.out.println("ALOO nasc passei");
-
                 break;
             case 4: //sexo
-                System.out.println("ALOO sexo");
                 pass.setSexo(alterarSexo(pass.getSexo()));
-                System.out.println("ALOO sexo passei");
-
                 break;
         }
         return pass;
     }
     
     private Permissao determinarErroEmPermissao(Pessoa imigrante) throws IOException {
-        System.out.println("Dentro de permissao "+ imigrante);
         Permissao perm = imigrante.getPerm();
         int qualAtributo = rand.gerarInt(4);
         switch (qualAtributo) {
             case 0: //peso
-                System.out.println("ALOO peso");
-
                 perm.setPeso(alterarPeso(perm.getPeso()));
-                System.out.println("ALOO peso passei");
-                
                 break;
             case 1: //erro é no nome
-                System.out.println("ALOO nome");
-
                 perm.setNome(alterarNome(perm.getNome()));
-                System.out.println("ALOO nome passei");
-                
                 break;
             case 2: //pais
-                
-                System.out.println("ALOO nacio");
-
                 perm.setNacionalidade(alterarPais(perm.getNacionalidade()));
-                System.out.println("ALOO nacio passei");
                 break;
             case 3: //altura
-                System.out.println("ALOO altura");
-
                 perm.setAltura(alterarAltura(perm.getAltura()));
-                System.out.println("ALOO altura passei");
-                
                 break;
             case 4: //validade
-                System.out.println("ALOO valid");
-
                 perm.setValidade(Data.gerarDataAleatoria(2013,2015));
-                System.out.println("ALOO valid passei");
- 
                 break;
-
         }
         return perm;
     }
