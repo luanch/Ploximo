@@ -53,13 +53,13 @@ public class JogoController {
     */
     
      public String insertNome(){
-        String nome = JOptionPane.showInputDialog("Insira seu nome: ");
+        String nome = JOptionPane.showInputDialog("INSIRA SEU NOME: ");
         return nome;   
     }
     
     public void nomearScore(Pontuacao pontuacao, String nome){
       pontuacao.setNome(nome);
-      System.out.println("Seu nome, " + nome + ", inserido nos recordes com sucesso.");
+      System.out.println("Seu nome, " + nome + ", foi inserido nos recordes com sucesso.");
     }
     
     public void calcularPontuação(JogoTela jogo, Pontuacao pontuacao){
@@ -79,6 +79,7 @@ public class JogoController {
     
     public boolean verificarCorretude (JogoTela jogo) {
 
+    if((botao1.getText() != null) && (botao2.getText() != null)){   
         if (!tipo1.equals("validade") || !tipo2.equals("validade")) {
             if (tipo1.equals(tipo2)) {
                 if (!botao1.getText().equals(botao2.getText())) {
@@ -101,7 +102,7 @@ public class JogoController {
                     }
                 }
         }
-
+    }
             return false;
     }
     

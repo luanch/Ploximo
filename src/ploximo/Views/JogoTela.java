@@ -492,7 +492,7 @@ public class JogoTela extends javax.swing.JFrame {
 
     private void negarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negarBotaoActionPerformed
         jogoController.calcularPontuação(this,this.pontos);
-        jogoController.nomearScore(pontos, jogoController.insertNome());
+        
         System.out.println("NomeJogador:" + pontos.getNome());
         System.out.println("Pontuação:" + pontos.getPontos());
         temPessoa = false;
@@ -700,7 +700,13 @@ public class JogoTela extends javax.swing.JFrame {
                      @Override
                      public void run() {
                          ataqueLabel.setVisible(false);
-                         jogoController.trocarDeTela(jogo, new FimDoDia());
+                         
+                         /*se acontecer um ataque terrorista, o jogador é punido com menos dois pontos*/
+                         jogoController.nomearScore(pontos, jogoController.insertNome());
+                         pontos.setPontos(pontos.getPontos() - 2);
+                         System.out.println("Pontos:" + pontos.getPontos());
+                         
+                         jogoController.trocarDeTela(jogo, new FimDoDia(pontos));
                          ploximoBotao.setEnabled(true);
                      }
                  }, 

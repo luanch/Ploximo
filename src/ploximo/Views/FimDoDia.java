@@ -7,19 +7,22 @@ package ploximo.Views;
 import java.util.ArrayList;
 import ploximo.controle.JogoController;
 import ploximo.controle.Pontuacao;
+import ploximo.controle.SerializacaoDaPontuacao;
 /**
  *
  * @author Bianca
  */
 public class FimDoDia extends javax.swing.JFrame {
     JogoController jogoController = new JogoController();
-
+    Pontuacao pontos = new Pontuacao();
     /**
      * Creates new form FimDoDia
      */
-    public FimDoDia() {
+    public FimDoDia(Pontuacao pt) {
         initComponents();
         initComponents();
+        
+        this.pontos = pt;
         
         ArrayList botoes = new ArrayList<>();
         botoes.add(menuBotao);
@@ -95,6 +98,11 @@ public class FimDoDia extends javax.swing.JFrame {
     private void salvarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarBotaoActionPerformed
         System.out.println("salvar");
         // TODO add your handling code here:
+        
+        Pontuacao[] serie = {this.pontos};
+        SerializacaoDaPontuacao serialpontos = new SerializacaoDaPontuacao();
+        serialpontos.serializar(serie);
+        serialpontos.LerSerialização();
     }//GEN-LAST:event_salvarBotaoActionPerformed
 
     private void continuarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarBotaoActionPerformed
@@ -142,7 +150,8 @@ public class FimDoDia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FimDoDia().setVisible(true);
+                Pontuacao ponto = new Pontuacao();
+                new FimDoDia(ponto).setVisible(true);
             }
         });
     }
