@@ -499,7 +499,8 @@ public class JogoTela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void negarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negarBotaoActionPerformed
-        jogoController.calcularPontuação(this,this.pontos);
+        if (temPessoa) {
+            jogoController.calcularPontuação(this,this.pontos);
         
         System.out.println("NomeJogador:" + pontos.getNome());
         System.out.println("Pontuação:" + pontos.getPontos());
@@ -518,6 +519,9 @@ public class JogoTela extends javax.swing.JFrame {
             permMiniBotao.setVisible(false);
             pesoBotao.setVisible(false);  
             pessoaBotao.setVisible(false);
+        }
+        
+        
     }//GEN-LAST:event_negarBotaoActionPerformed
 
     private void idMiniBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idMiniBotaoActionPerformed
