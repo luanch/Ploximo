@@ -33,7 +33,7 @@ public class Pessoa {
     private Permissao perm;
 
     public Pessoa(String nome, GregorianCalendar data, char sexo, 
-            String nacionalidade, String peso, String altura, String foto, String motivo, String duracao) {
+            String nacionalidade, String peso, String altura, String foto, String motivo, String duracao, boolean terrorista, boolean deveEntrar) {
         this.nome = nome;
         this.nascimento = data;
         this.sexo = sexo;
@@ -43,25 +43,12 @@ public class Pessoa {
         this.foto = foto;
         this.motivo = motivo;
         this.duracao = duracao;
-        ehTerrorista();
-        deveEntrar();
+        this.terrorista = terrorista;
+        this.deveEntrar = deveEntrar;
        
     }
     
-    private void deveEntrar(){
-        this.deveEntrar = this.rand.gerarBool();
-    }
     
-    private void ehTerrorista() { // 12,5% (1/8) de chance de ser terrorista 
-        boolean deveSerTerrorista = true;
-        for(int i=0; i<3;i++){
-            if(this.rand.gerarBool()){
-                deveSerTerrorista = false; // Entrei aqui, logo vai dar false
-                break; // não preciso de outra iteração
-            }
-        }
-        this.terrorista = deveSerTerrorista;
-    }
     
     public void deletar() throws Throwable{
         this.finalize();

@@ -9,6 +9,7 @@ import java.awt.Container;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -126,6 +127,7 @@ public class JogoTela extends javax.swing.JFrame {
         dataBotao = new javax.swing.JButton();
         aprovarBotao = new javax.swing.JButton();
         negarBotao = new javax.swing.JButton();
+        ataqueLabel = new javax.swing.JLabel();
         fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -477,6 +479,10 @@ public class JogoTela extends javax.swing.JFrame {
         getContentPane().add(negarBotao);
         negarBotao.setBounds(780, 220, 130, 50);
 
+        ataqueLabel.setToolTipText("");
+        getContentPane().add(ataqueLabel);
+        ataqueLabel.setBounds(690, 10, 510, 190);
+
         fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ploximo/Imagens/Jogo fundo.png"))); // NOI18N
         getContentPane().add(fundo);
         fundo.setBounds(0, 0, 1200, 680);
@@ -684,6 +690,24 @@ public class JogoTela extends javax.swing.JFrame {
             permMiniBotao.setVisible(false);
             pesoBotao.setVisible(false);  
             pessoaBotao.setVisible(false);
+            if (pc.isTerrorista()) {
+               ataqueLabel.setVisible(true);
+               ataqueLabel.setIcon(new ImageIcon("src/ploximo/Imagens/ataque.gif"));
+               JogoTela jogo = this;
+               ploximoBotao.setEnabled(false);
+                 new java.util.Timer().schedule( 
+                 new java.util.TimerTask() {
+                     @Override
+                     public void run() {
+                         ataqueLabel.setVisible(false);
+                         jogoController.trocarDeTela(jogo, new FimDoDia());
+                         ploximoBotao.setEnabled(true);
+                     }
+                 }, 
+                 5000 
+         );
+           }
+            
     }//GEN-LAST:event_aprovarBotaoActionPerformed
 
     private void idFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFotoActionPerformed
@@ -733,6 +757,7 @@ public class JogoTela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aprovarBotao;
+    private javax.swing.JLabel ataqueLabel;
     private javax.swing.JButton dataBotao;
     private javax.swing.JLabel fundo;
     private javax.swing.JButton idAlt;

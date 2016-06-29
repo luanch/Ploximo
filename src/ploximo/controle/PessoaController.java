@@ -18,6 +18,9 @@ import ploximo.Models.Pessoa;
  */
 public class PessoaController {
     Randomizador r = new Randomizador();
+    boolean terrorista;
+    boolean deveEntrar;
+    
     public Pessoa gerar() throws IOException{
         String foto = Foto.gerar();
         String nacionalidade = Nacionalidade.gerar();
@@ -30,8 +33,11 @@ public class PessoaController {
         char sexo = gerarSexo(r);
         String motivo = Motivo.gerar();
         String duracao = Duracao.gerar();
+        terrorista = ehTerrorista(r);
+        deveEntrar = deveEntrar(r);
+        
         Pessoa pessoa = new Pessoa(nome,nascimento, sexo, nacionalidade,
-                                    peso, altura, foto, motivo, duracao);
+                                    peso, altura, foto, motivo, duracao, terrorista, deveEntrar);
         PassaporteController pC = new PassaporteController();
         Passaporte pass = pC.gerar(pessoa);
         pessoa.setPass(pass);
@@ -58,6 +64,31 @@ public class PessoaController {
         */
         
         return pessoa;
+    }
+
+    public boolean isTerrorista() {
+        return terrorista;
+    }
+
+    public boolean isDeveEntrar() {
+        return deveEntrar;
+    }
+    
+    
+    
+    private boolean deveEntrar(Randomizador r){
+        return r.gerarBool();
+    }
+    
+    private boolean ehTerrorista(Randomizador r) { // 12,5% (1/8) de chance de ser terrorista 
+        boolean deveSerTerrorista = true;
+        for(int i=0; i<3;i++){
+            if(r.gerarBool()){
+                deveSerTerrorista = false; // Entrei aqui, logo vai dar false
+                break; // não preciso de outra iteração
+            }
+        }
+        return deveSerTerrorista;
     }
 
     private char gerarSexo(Randomizador rand) {
