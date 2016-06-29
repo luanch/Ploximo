@@ -34,7 +34,8 @@ public class JogoController {
     DocumentosController dc = new DocumentosController();
     JButton botao1;
     JButton botao2;
-    String tipo1, tipo2;
+    String tipo1;
+    String tipo2;
     
     /**
      * Inicia as telas com tamanho do fundo. O fundo foi passado por 
@@ -80,8 +81,7 @@ public class JogoController {
     }
     
     public boolean verificarCorretude (JogoTela jogo) {
-
-    if((botao1.getText() != null) && (botao2.getText() != null)){   
+    if( (botao1.getText() != null) && (botao2.getText() != null) ){   
         if (!tipo1.equals("validade") || !tipo2.equals("validade")) {
             if (tipo1.equals(tipo2)) {
                 if (!botao1.getText().equals(botao2.getText())) {
@@ -105,6 +105,10 @@ public class JogoController {
                 }
         }
     }
+    else 
+        if( ((botao1.getText() != null) && (botao2.getText() == null)) || ((botao1.getText() == null) && (botao2.getText() != null)) ){
+          return true;    
+        }
             return false;
     }
     
