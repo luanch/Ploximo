@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package ploximo.Views;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ploximo.controle.JogoController;
 import ploximo.controle.Pontuacao;
 import ploximo.controle.SerializacaoDaPontuacao;
@@ -96,8 +99,13 @@ public class FimDoDia extends javax.swing.JFrame {
 
     private void salvarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarBotaoActionPerformed
         System.out.println("salvar");
-        // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            pontos.armazenar();
+        } catch (IOException ex) {
+            Logger.getLogger(FimDoDia.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erro de XML.");
+        }
         Pontuacao[] serie = {this.pontos};
         SerializacaoDaPontuacao serialpontos = new SerializacaoDaPontuacao();
         serialpontos.serializar(serie);

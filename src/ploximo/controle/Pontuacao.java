@@ -5,7 +5,12 @@
  */
 package ploximo.controle;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -39,6 +44,13 @@ public class Pontuacao implements Serializable{
 
     public void setPontos(int pontos) {
         this.pontos = pontos;
+    }
+    
+    public void armazenar() throws FileNotFoundException, IOException{
+        FileOutputStream p = new FileOutputStream("score.txt",true);
+        String ponts = getNome() + "," + getPontos();
+        p.write(ponts.getBytes());
+        p.close();
     }
     
 }

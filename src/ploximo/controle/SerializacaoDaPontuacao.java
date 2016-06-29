@@ -21,7 +21,7 @@ public class SerializacaoDaPontuacao {
     
     public void serializar(Pontuacao pontos []){   
         try{
-            XMLEncoder xmlEncoder= null;
+            XMLEncoder xmlEncoder = null;
             try {
                xmlEncoder = new XMLEncoder(
                new FileOutputStream("pontuação.xml"));
@@ -59,6 +59,7 @@ public class SerializacaoDaPontuacao {
                 for(Pontuacao p:score){
                     System.out.print("Nome:" + p.getNome());
                     System.out.print(" Pontos:" + p.getPontos());
+                    System.out.println();
                 }
             }
         }
