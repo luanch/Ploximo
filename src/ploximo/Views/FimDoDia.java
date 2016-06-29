@@ -5,6 +5,7 @@
  */
 package ploximo.Views;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import ploximo.controle.JogoController;
 import ploximo.controle.Pontuacao;
 import ploximo.controle.SerializacaoDaPontuacao;
@@ -15,6 +16,7 @@ import ploximo.controle.SerializacaoDaPontuacao;
 public class FimDoDia extends javax.swing.JFrame {
     JogoController jogoController = new JogoController();
     Pontuacao pontos = new Pontuacao();
+    boolean salvou = false;
     /**
      * Creates new form FimDoDia
      */
@@ -96,6 +98,7 @@ public class FimDoDia extends javax.swing.JFrame {
 
     private void salvarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarBotaoActionPerformed
         System.out.println("salvar");
+        salvou = true;
         // TODO add your handling code here:
         
         Pontuacao[] serie = {this.pontos};
@@ -106,6 +109,29 @@ public class FimDoDia extends javax.swing.JFrame {
 
     private void continuarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarBotaoActionPerformed
         Pontuacao p = new Pontuacao();
+        if (!salvou) {
+            Object[] opcoes = {"Salvar e continuar", "Apenas continuar"};
+
+        int n = JOptionPane.showOptionDialog(null,
+            "Deseja salvar?",
+            "",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            opcoes,
+            opcoes[0]);
+
+        if (opcoes[n].equals(opcoes[0])) {
+            System.out.println("salvou");
+            Pontuacao[] serie = {this.pontos};
+            SerializacaoDaPontuacao serialpontos = new SerializacaoDaPontuacao();
+            serialpontos.serializar(serie);
+            serialpontos.LerSerialização();
+        }
+        
+        }
+        
+
         jogoController.trocarDeTela(this, new JogoTela(p));
 
     }//GEN-LAST:event_continuarBotaoActionPerformed

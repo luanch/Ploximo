@@ -26,7 +26,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         ArrayList botoes = new ArrayList<>();
         botoes.add(novoJogoBotao);
-        botoes.add(carregarJogoBotao);
         botoes.add(highScoresBotao);
         botoes.add(sairBotao);
         jogoController.configurarBotoes(botoes);
@@ -44,7 +43,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         novoJogoBotao = new javax.swing.JButton();
-        carregarJogoBotao = new javax.swing.JButton();
         highScoresBotao = new javax.swing.JButton();
         sairBotao = new javax.swing.JButton();
         fundo = new javax.swing.JLabel();
@@ -58,9 +56,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(novoJogoBotao);
-        novoJogoBotao.setBounds(40, 240, 310, 40);
-        getContentPane().add(carregarJogoBotao);
-        carregarJogoBotao.setBounds(40, 350, 380, 40);
+        novoJogoBotao.setBounds(440, 290, 310, 50);
 
         highScoresBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +64,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(highScoresBotao);
-        highScoresBotao.setBounds(950, 240, 200, 40);
+        highScoresBotao.setBounds(490, 400, 220, 50);
 
         sairBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +72,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(sairBotao);
-        sairBotao.setBounds(1070, 350, 80, 30);
+        sairBotao.setBounds(550, 500, 90, 40);
 
         fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ploximo/Imagens/menu.png"))); // NOI18N
         fundo.setText("jLabel1");
@@ -145,7 +141,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton carregarJogoBotao;
     private javax.swing.JLabel fundo;
     private javax.swing.JButton highScoresBotao;
     private javax.swing.JButton novoJogoBotao;
