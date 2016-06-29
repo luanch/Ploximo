@@ -22,7 +22,6 @@ import ploximo.Models.Permissao;
 import ploximo.Models.Pessoa;
 import ploximo.Views.FimDoDia;
 import ploximo.Views.JogoTela;
-import ploximo.controle.Pontuacao;
 
 /**
  *
@@ -67,11 +66,11 @@ public class JogoController {
         
         String[] pontuacaoArray = pontuacaoLabel.getText().split(" ");
         if(verificarCorretude(jogo)){
-            pontuacao.setPontos(pontuacao.getPontos()+1);
+            pontuacao.setPontos(pontuacao.getPontos()+10);
             pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
         }
         else{
-            pontuacao.setPontos(pontuacao.getPontos()-1);
+            pontuacao.setPontos(pontuacao.getPontos()-10);
             pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
 
         }
@@ -249,10 +248,10 @@ public class JogoController {
                 botao2 = null;
                 tipo2 = null;
             }     
-            else 
+            else {
                 botao1 = null;
                 tipo1 = null;
-                
+            }
         }
             
         
