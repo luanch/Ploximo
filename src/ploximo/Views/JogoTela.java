@@ -726,7 +726,6 @@ public class JogoTela extends javax.swing.JFrame {
                          o jogador é punido com menos dois pontos*/
                          jogoController.nomearScore(pontos, 
                                     jogoController.insertNome());
-                         pontos.setPontos(pontos.getPontos() - 2);
                          System.out.println("Pontos:" + pontos.getPontos());
                          
                          //jogoController.trocarDeTela(jogo, new FimDoDia(pontos));

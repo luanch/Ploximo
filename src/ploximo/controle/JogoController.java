@@ -70,9 +70,14 @@ public class JogoController {
             pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
         }
         else{
-            pontuacao.setPontos(pontuacao.getPontos()-10);
-            pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
-
+            if(imigrante.getTerrorista()){
+                pontuacao.setPontos(pontuacao.getPontos()-100);
+                pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
+            }
+            else{
+                pontuacao.setPontos(pontuacao.getPontos()-10);
+                pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
+            }
         }
     }
     
