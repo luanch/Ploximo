@@ -9,7 +9,6 @@ import java.awt.Container;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -46,10 +45,8 @@ public class JogoTela extends javax.swing.JFrame {
         passFoto.setEnabled(false);
         pessoaBotao.setEnabled(false);
         
-        Cronometro cronometro = new Cronometro(cronometroLabel);
+        Cronometro cronometro = new Cronometro(this);
         cronometro.start();
-        boolean botao1Bool = false;
-        boolean botao2Bool = false;
         
         botoes.add(aprovarBotao);
         botoes.add(negarBotao);
@@ -697,21 +694,8 @@ public class JogoTela extends javax.swing.JFrame {
             pesoBotao.setVisible(false);  
             pessoaBotao.setVisible(false);
             if (pc.isTerrorista()) {
-               ataqueLabel.setVisible(true);
-               ataqueLabel.setIcon(new ImageIcon("src/ploximo/Imagens/ataque.gif"));
-               JogoTela jogo = this;
-               ploximoBotao.setEnabled(false);
-                 new java.util.Timer().schedule( 
-                 new java.util.TimerTask() {
-                     @Override
-                     public void run() {
-                         ataqueLabel.setVisible(false);
-                         jogoController.trocarDeTela(jogo, new FimDoDia());
-                         ploximoBotao.setEnabled(true);
-                     }
-                 }, 
-                 5000 
-         );
+                jogoController.ataqueTerrista(this);
+              
            }
             
     }//GEN-LAST:event_aprovarBotaoActionPerformed
@@ -1046,4 +1030,33 @@ public class JogoTela extends javax.swing.JFrame {
     public void setPessoaBotao(JButton pessoaBotao) {
         this.pessoaBotao = pessoaBotao;
     }
+
+    public JLabel getAtaqueLabel() {
+        return ataqueLabel;
+    }
+
+    public void setAtaqueLabel(JLabel ataqueLabel) {
+        this.ataqueLabel = ataqueLabel;
+    }
+
+    public JButton getPloximoBotao() {
+        return ploximoBotao;
+    }
+
+    public void setPloximoBotao(JButton ploximoBotao) {
+        this.ploximoBotao = ploximoBotao;
+    }
+    
+    public void fimDeDia(){
+        jogoController.terminarDia(this, 0);
+    }
+
+    public JLabel getCronometroLabel() {
+        return cronometroLabel;
+    }
+
+    public void setCronometroLabel(JLabel cronometroLabel) {
+        this.cronometroLabel = cronometroLabel;
+    }
+    
 }

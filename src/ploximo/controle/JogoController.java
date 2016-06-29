@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ import ploximo.Models.Identidade;
 import ploximo.Models.Passaporte;
 import ploximo.Models.Permissao;
 import ploximo.Models.Pessoa;
+import ploximo.Views.FimDoDia;
 import ploximo.Views.JogoTela;
 import ploximo.controle.Pontuacao;
 
@@ -270,6 +272,27 @@ public class JogoController {
     public JButton getBotao2() {
         return botao2;
     }
+
+    public void ataqueTerrista(JogoTela jogo) {
+        JLabel ataqueLabel = jogo.getAtaqueLabel();
+        ataqueLabel.setVisible(true);
+        ataqueLabel.setIcon(new ImageIcon("src/ploximo/Imagens/ataque.gif"));
+        JButton ploximo = jogo.getPloximoBotao();
+        ploximo.setEnabled(false);
+        terminarDia(jogo, 5000);
+    } 
     
-    
+    public void terminarDia(JogoTela jogo, int tempoAntesDeTerminar){
+            new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    jogo.getAtaqueLabel().setVisible(false);
+                    trocarDeTela(jogo, new FimDoDia());
+                    jogo.getPloximoBotao().setEnabled(true);
+                }
+            }, 
+            tempoAntesDeTerminar
+        );    
+    }
 }
