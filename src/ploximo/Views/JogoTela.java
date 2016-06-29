@@ -35,6 +35,7 @@ public class JogoTela extends javax.swing.JFrame {
     JButton botao1;
     JButton botao2;
     Pontuacao pontos = new Pontuacao();
+    String[] regrasArray = {"Usuários devem apresentar identidade, passaporte e permissão de acesso.", "As informações listadas nos documentos devem estar de acordo entre si.", "Todos os documentos devem estar válidos.", "Não são permitidos armas ou contrabando."};
     
     public JogoTela(Pontuacao pontos) {
         initComponents();  
@@ -42,6 +43,11 @@ public class JogoTela extends javax.swing.JFrame {
         this.pontos = pontos;
         
         dataBotao.setText(Data.gerarDataAtual());
+        regra1.setText("<html>" + regrasArray[0] + "</html>");
+        
+        regra2.setText("<html>" + regrasArray[1] + "</html>");
+        regra3.setText("<html>" + regrasArray[2] + "</html>");
+        regra4.setText("<html>" + regrasArray[3] + "</html>");
                 
         idFoto.setEnabled(false);
         passFoto.setEnabled(false);
