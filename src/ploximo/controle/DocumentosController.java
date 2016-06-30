@@ -35,6 +35,16 @@ public class DocumentosController {
         return imigrante;
     }
     
+    
+    Pessoa determinarPesoErrado(JogoTela jogo, Pessoa imigrante) {
+        if(rand.gerarBool())
+            imigrante.getId().setPeso(alterarPeso(imigrante.getPeso()));
+        else
+            imigrante.getPerm().setPeso(alterarPeso(imigrante.getPeso()));
+        return imigrante;
+    }
+    
+    
     private Identidade determinarErroEmIdentidade(Pessoa imigrante) throws IOException {
         Identidade id = imigrante.getId();
         char sexo = imigrante.getSexo();
@@ -162,5 +172,5 @@ public class DocumentosController {
             }
         }
         return codigoNovo;
-    }
+    }    
 }

@@ -30,6 +30,7 @@ import ploximo.Views.JogoTela;
 public class JogoController {
     private static final int TAMANHO_BARRA_SUPERIOR = 30;
     Pessoa imigrante;
+    Randomizador r;
     DocumentosController dc = new DocumentosController();
     JButton botao1;
     JButton botao2;
@@ -88,7 +89,6 @@ public class JogoController {
     * @return 
     */
     public boolean verificarCorretude (JogoTela jogo) {
-        System.out.println(imigrante.imigranteDeveEntrar());
         if (tipo1 == null) {
             return !imigrante.imigranteDeveEntrar();
         }  
@@ -114,6 +114,11 @@ public class JogoController {
                                 return true;
                         }
                     }
+                    else if(tipo1.equals("peso") && tipo2.equals("peso")){
+                        if(imigrante.imigranteDeveEntrar()){
+                            return false;
+                        }
+                    }
                 }
             }
         }
@@ -127,13 +132,18 @@ public class JogoController {
     }
     
     public void chamarImigrante(JogoTela jogo) {
+        Randomizador r = new Randomizador();
         if (imigrante == null) {
              try {
                 imigrante = jogo.getPessoaController().gerar(); 
 
                 if (!imigrante.imigranteDeveEntrar()) {
-                    
                     imigrante = dc.determinarDocumentoErrado(jogo, imigrante);
+                }
+                else{
+                    if(r.gerarBool() && r.gerarBool()){ // 25% de chance
+                        imigrante = dc.determinarPesoErrado(jogo, imigrante);
+                    }
                 }
                 adicionarInformacoesId(jogo);
                 adicionarInformacoesPerm(jogo);
@@ -303,5 +313,21 @@ public class JogoController {
             }, 
             tempoAntesDeTerminar
         );    
+    }
+
+    public int pesoCorreto(JogoTela jogo) {
+        if(tipo1 != null && tipo2 != null){
+            if(tipo1.equals("peso") && tipo2.equals("peso")){
+                if(imigrante.imigranteDeveEntrar()){
+                   JOptionPane.showMessageDialog(jogo, "Nada de Errado encontrado ao escanneá-lo!!");
+                }
+                else if(r.gerarBool()){
+                    JOptionPane.showMessageDialog(jogo, "Hmm.. Acho que temos uma arma escondida!!");
+                }
+                else JOptionPane.showMessageDialog(jogo, "Opa, ele não pode entrar com essas drogas!!");
+
+            }
+        }
+        return 0;
     }
 }

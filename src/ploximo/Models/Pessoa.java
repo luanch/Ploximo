@@ -6,6 +6,7 @@
 package ploximo.Models;
 
 import java.util.GregorianCalendar;
+import ploximo.Views.JogoTela;
 import ploximo.controle.Randomizador;
 
 
