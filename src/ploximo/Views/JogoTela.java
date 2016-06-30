@@ -26,7 +26,7 @@ import ploximo.controle.Pontuacao;
 public class JogoTela extends javax.swing.JFrame { 
     
     Pessoa imigrante;
-    
+    boolean clicouEmAprovar;
     JogoController jogoController = new JogoController();
     PessoaController pc = new PessoaController();
     boolean temPessoa = false;
@@ -526,11 +526,10 @@ public class JogoTela extends javax.swing.JFrame {
 
     private void negarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negarBotaoActionPerformed
         if (temPessoa) {
+            clicouEmAprovar = false;
             jogoController.calcularPontuacao(this,this.pontos);
         
-        System.out.println("NomeJogador:" + pontos.getNome());
-        System.out.println("Pontuação:" + pontos.getPontos());
-        temPessoa = false;
+            temPessoa = false;
             try {
                 jogoController.negarImigrante(this);
             } catch (Throwable ex) {
@@ -692,6 +691,7 @@ public class JogoTela extends javax.swing.JFrame {
 
     private void aprovarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprovarBotaoActionPerformed
             if (temPessoa) {
+                clicouEmAprovar = true;
                 jogoController.calcularPontuacao(this,this.pontos);
                 temPessoa = false;   
             
@@ -1102,6 +1102,10 @@ public class JogoTela extends javax.swing.JFrame {
 
     public void setPontos(Pontuacao pontos) {
         this.pontos = pontos;
+    }
+
+    public boolean clicouEmAprovar() {
+        return clicouEmAprovar;
     }
     
 }

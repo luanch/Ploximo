@@ -41,7 +41,7 @@ public class PessoaController {
         terrorista = false;
         codigo = Codigo.gerar();
         String nome;
-        if(sexo == 'M'){
+        if(sexo == 'H'){
             nome = Nome.gerarHomem();
         }
         else
