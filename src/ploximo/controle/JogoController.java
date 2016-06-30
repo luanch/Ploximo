@@ -99,44 +99,6 @@ public class JogoController {
         }
     }
     
-    public boolean verificarCorretude (JogoTela jogo) {
-        if (tipo1 == null) {
-            System.out.println("Imigrante deve Entrar?"+ imigrante.deveEntrar());
-            return !imigrante.deveEntrar();
-        }  
-        if( (botao1 != null) && (botao2 != null) ){   
-            if (!tipo1.equals("validade") || !tipo2.equals("validade")) {
-                if (tipo1.equals(tipo2)) {
-                    if (!botao1.getText().equals(botao2.getText())) {
-                        return true;
-                    }
-                }
-            }
-            else {
-                if (tipo2.equals("validade") && tipo1.equals("data atual")) {
-                    if (tipo2.contains("2013") || tipo2.contains("2014") 
-                                || tipo2.contains("2015")) {
-                        return true;
-                    }
-                }
-                else {
-                    if (tipo1.equals("validade") && tipo2.equals("data atual")) {
-                        if (tipo1.contains("2013") || tipo1.contains("2014") 
-                                || tipo1.contains("2015")) {
-                                return true;
-                        }
-                    }
-                    else if(tipo1.equals("peso") && tipo2.equals("peso")){
-                        if(imigrante.deveEntrar()){
-                            return false;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-    
     public void chamarImigrante(JogoTela jogo) {
         imigrante = jogo.getImigrante();
         if (imigrante == null) {
@@ -349,7 +311,7 @@ public class JogoController {
         if(tipo1 != null && tipo2 != null){
             if(tipo1.equals("peso") && tipo2.equals("peso")){
                 if(imigrante.deveEntrar()){
-                    JOptionPane.showMessageDialog(jogo, "Nada de Errado encontrado ao escanneá-lo!!");
+                    JOptionPane.showMessageDialog(jogo, "Nada de errado encontrado ao escanneá-lo!!");
                 }   
                 else if(r.gerarBool()){
                     JOptionPane.showMessageDialog(jogo, "Hmm.. Acho que temos uma arma escondida!!");
