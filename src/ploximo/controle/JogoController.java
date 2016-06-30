@@ -138,6 +138,7 @@ public class JogoController {
     }
     
     public void chamarImigrante(JogoTela jogo) {
+        imigrante = jogo.getImigrante();
         if (imigrante == null) {
              try {
                 imigrante = jogo.getPessoaController().gerar(); 
@@ -302,8 +303,8 @@ public class JogoController {
     public void aprovarImigrante(JogoTela jogo) throws Throwable {
         imigrante = jogo.getImigrante();
         if (imigrante != null) {
-            zerarInformacoesImigrante();
-            imigrante.deletar();
+            zerarInformacoesImigrante(jogo);
+            //imigrante.deletar();
             jogo.getPesoBotao().setText("");     
             //Foto foto = new Foto();
             //foto.retirarImagemNoBotao(jogo.getPessoaBotao());     
@@ -313,8 +314,8 @@ public class JogoController {
     public void negarImigrante(JogoTela jogo) throws Throwable {
         imigrante = jogo.getImigrante();
         if (imigrante != null) {
-            imigrante.deletar();
-            zerarInformacoesImigrante();
+            //imigrante.deletar();
+            zerarInformacoesImigrante(jogo);
             jogo.getPesoBotao().setText("");     
             //Foto foto = new Foto();
             //foto.retirarImagemNoBotao(jogo.getPessoaBotao());     
@@ -382,10 +383,12 @@ public class JogoController {
                     ataqueTerrista(jogo,jogo.getPontos());
     }
 
-    private void zerarInformacoesImigrante() {
+    private void zerarInformacoesImigrante(JogoTela jogo) {
         for(JButton botao: botoesClicaveis){
             botao.setContentAreaFilled(false);
         }
+        imigrante = null;
+        jogo.setImigrante(imigrante);
         botao1 = null;
         botao2 = null;
         tipo1 = null;

@@ -54,11 +54,11 @@ public class Pessoa {
     }
     
     
-    
+  /*  
     public void deletar() throws Throwable{
         this.finalize();
     }
-
+*/
     public boolean isTerrorista() {
         return terrorista;
     }
