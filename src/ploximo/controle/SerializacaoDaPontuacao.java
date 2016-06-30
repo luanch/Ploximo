@@ -91,12 +91,10 @@ public class SerializacaoDaPontuacao {
                     }
                 }
                 /*Agora que a ordenação dos scores acabou, podemos exibí-los*/
-                
-                System.out.println("High Score:");
+
                 int i =0;
                 for(Pontuacao p:score){
-                    System.out.print("Nome:" + p.getNome());
-                    System.out.print(" Pontos:" + p.getPontos());
+
                     mscores[i][0] = p.getNome();
                     mscores[i][1] += p.getPontos();
                     System.out.println();

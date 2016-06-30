@@ -6,13 +6,10 @@
 package ploximo.controle;
 
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  *
@@ -54,7 +51,5 @@ public class Pontuacao implements Serializable{
             p.write(ponts);
             p.newLine();
             p.close();
-        
     }
-    
 }

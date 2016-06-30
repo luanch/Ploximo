@@ -59,37 +59,49 @@ public class JogoController {
     
     public void nomearScore(Pontuacao pontuacao, String nome){
       pontuacao.setNome(nome);
-      System.out.println("Seu nome, " + nome + ", foi inserido nos recordes com sucesso.");
     }
     
     public void calcularPontuacao(JogoTela jogo, Pontuacao pontuacao){
         JLabel pontuacaoLabel = jogo.getPontuacaoLabel();
         
         String[] pontuacaoArray = pontuacaoLabel.getText().split(" ");
-        if(verificarCorretude(jogo)){
-            pontuacao.setPontos(pontuacao.getPontos()+10);
-            pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
-        }
-        else{
-            if(imigrante.isTerrorista()){
-                pontuacao.setPontos(pontuacao.getPontos()-100);
+        if(jogo.clicouEmAprovar()){
+            if(imigrante.deveEntrar()){
+                pontuacao.setPontos(pontuacao.getPontos()+10);
                 pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
             }
             else{
-                pontuacao.setPontos(pontuacao.getPontos()-10);
+                if(imigrante.isTerrorista()){
+                    pontuacao.setPontos(pontuacao.getPontos()-100);
+                    pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
+                }
+                else{
+                    pontuacao.setPontos(pontuacao.getPontos()-10);
+                    pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
+                }
+            }
+        }
+        else{
+            if(verificarCorretude(jogo)){
+                pontuacao.setPontos(pontuacao.getPontos()+10);
                 pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
+            }
+            else{
+                if(imigrante.isTerrorista()){
+                    pontuacao.setPontos(pontuacao.getPontos()-100);
+                    pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
+                }
+                else{
+                    pontuacao.setPontos(pontuacao.getPontos()-10);
+                    pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
+                }
             }
         }
     }
     
-    /**
-    * função chamada quando o usuário clica em negar no jogotela.Recebe jogo  e
-    * retorna true quando usuario acertou o erro e false quando errou tudo
-    * @param jogo
-    * @return 
-    */
     public boolean verificarCorretude (JogoTela jogo) {
         if (tipo1 == null) {
+            System.out.println("Imigrante deve Entrar?"+ imigrante.deveEntrar());
             return !imigrante.deveEntrar();
         }  
         if( (botao1 != null) && (botao2 != null) ){   
@@ -122,12 +134,6 @@ public class JogoController {
                 }
             }
         }
-        else {
-            if( ((botao1.getText() != null) && (botao2.getText() == null)) || 
-                 ((botao1.getText() == null) && (botao2.getText() != null)) ){
-              return true;    
-            }
-        }
         return false;
     }
     
@@ -135,6 +141,7 @@ public class JogoController {
         if (imigrante == null) {
              try {
                 imigrante = jogo.getPessoaController().gerar(); 
+                jogo.setImigrante(imigrante);
 
                 if (!imigrante.deveEntrar()) {
                     imigrante = dc.determinarDocumentoErrado(jogo, imigrante);
@@ -377,7 +384,7 @@ public class JogoController {
 
     private void zerarInformacoesImigrante() {
         for(JButton botao: botoesClicaveis){
-            botao.setSelected(false);
+            botao.setContentAreaFilled(false);
         }
         botao1 = null;
         botao2 = null;

@@ -88,6 +88,9 @@ public class DocumentosController {
             case 4: //erro de codigo
                 pass.setCodigo(alterarCodigo(pass.getCodigo()));
                 break;
+            case 5:
+                pass.setSexo(alterarSexo(sexo));
+                break;
         }
         return pass;
     }

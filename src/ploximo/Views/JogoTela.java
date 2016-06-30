@@ -9,7 +9,6 @@ import java.awt.Container;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -27,7 +26,7 @@ import ploximo.controle.Pontuacao;
 public class JogoTela extends javax.swing.JFrame { 
     
     Pessoa imigrante;
-    
+    boolean clicouEmAprovar;
     JogoController jogoController = new JogoController();
     PessoaController pc = new PessoaController();
     boolean temPessoa = false;
@@ -35,7 +34,7 @@ public class JogoTela extends javax.swing.JFrame {
     JButton botao1;
     JButton botao2;
     Pontuacao pontos = new Pontuacao();
-    String[] regrasArray = {"Usuários devem apresentar identidade, passaporte e permissão de acesso.", "As informações listadas nos documentos devem estar de acordo entre si.", "Todos os documentos devem estar válidos.", "Não são permitidos armas ou contrabando."};
+    String[] regrasArray = {"Usuários devem apresentar identidade, passaporte e permissão de acesso.", "As informações listadas nos documentos devem estar de acordo entre si.", "Todos os documentos devem estar válidos.", "Não são permitidos armas ou contrabando.", "Caso haja divergência de peso, certifique-se, utilizando o scanner"};
     
     public JogoTela(Pontuacao pontos) {
         initComponents();  
@@ -43,12 +42,12 @@ public class JogoTela extends javax.swing.JFrame {
         this.pontos = pontos;
         
         dataBotao.setText(Data.gerarDataAtual());
-        regra1.setText("<html>" + regrasArray[0] + "</html>");
-        
+        regra1.setText("<html>" + regrasArray[0] + "</html>");       
         regra2.setText("<html>" + regrasArray[1] + "</html>");
         regra3.setText("<html>" + regrasArray[2] + "</html>");
         regra4.setText("<html>" + regrasArray[3] + "</html>");
-                
+        regra5.setText("<html>" + regrasArray[4] + "</html>");
+
         idFoto.setEnabled(false);
         passFoto.setEnabled(false);
         pessoaBotao.setEnabled(false);
@@ -95,6 +94,7 @@ public class JogoTela extends javax.swing.JFrame {
         regra2 = new javax.swing.JButton();
         regra3 = new javax.swing.JButton();
         regra4 = new javax.swing.JButton();
+        regra5 = new javax.swing.JLabel();
         regras = new javax.swing.JLabel();
         permPainel = new javax.swing.JLayeredPane();
         permPassCod = new javax.swing.JButton();
@@ -152,12 +152,12 @@ public class JogoTela extends javax.swing.JFrame {
                 regra1ActionPerformed(evt);
             }
         });
-        regrasPainel.add(regra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 210, 50));
+        regrasPainel.add(regra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 210, 50));
 
         regra2.setBorderPainted(false);
         regra2.setContentAreaFilled(false);
         regra2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        regrasPainel.add(regra2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 210, 50));
+        regrasPainel.add(regra2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 210, 50));
 
         regra3.setBorderPainted(false);
         regra3.setContentAreaFilled(false);
@@ -167,12 +167,15 @@ public class JogoTela extends javax.swing.JFrame {
                 regra3ActionPerformed(evt);
             }
         });
-        regrasPainel.add(regra3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 210, 50));
+        regrasPainel.add(regra3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 210, 50));
 
         regra4.setBorderPainted(false);
         regra4.setContentAreaFilled(false);
         regra4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        regrasPainel.add(regra4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 210, 50));
+        regrasPainel.add(regra4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 210, 50));
+
+        regra5.setText("jLabel1");
+        regrasPainel.add(regra5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 210, 60));
 
         regras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ploximo/Imagens/regras.png"))); // NOI18N
         regrasPainel.add(regras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 380));
@@ -527,11 +530,10 @@ public class JogoTela extends javax.swing.JFrame {
 
     private void negarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negarBotaoActionPerformed
         if (temPessoa) {
+            clicouEmAprovar = false;
             jogoController.calcularPontuacao(this,this.pontos);
         
-        System.out.println("NomeJogador:" + pontos.getNome());
-        System.out.println("Pontuação:" + pontos.getPontos());
-        temPessoa = false;
+            temPessoa = false;
             try {
                 jogoController.negarImigrante(this);
             } catch (Throwable ex) {
@@ -693,6 +695,7 @@ public class JogoTela extends javax.swing.JFrame {
 
     private void aprovarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprovarBotaoActionPerformed
             if (temPessoa) {
+                clicouEmAprovar = true;
                 jogoController.calcularPontuacao(this,this.pontos);
                 temPessoa = false;   
             
@@ -809,6 +812,7 @@ public class JogoTela extends javax.swing.JFrame {
     private javax.swing.JButton regra2;
     private javax.swing.JButton regra3;
     private javax.swing.JButton regra4;
+    private javax.swing.JLabel regra5;
     private javax.swing.JLabel regras;
     private javax.swing.JButton regrasMiniBotao;
     private javax.swing.JLayeredPane regrasPainel;
@@ -1104,4 +1108,9 @@ public class JogoTela extends javax.swing.JFrame {
     public void setPontos(Pontuacao pontos) {
         this.pontos = pontos;
     }
+
+    public boolean clicouEmAprovar() {
+        return clicouEmAprovar;
+    }
+    
 }
