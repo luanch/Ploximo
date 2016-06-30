@@ -35,6 +35,7 @@ public class JogoTela extends javax.swing.JFrame {
     JButton botao1;
     JButton botao2;
     Pontuacao pontos = new Pontuacao();
+    String[] regrasArray = {"Usuários devem apresentar identidade, passaporte e permissão de acesso.", "As informações listadas nos documentos devem estar de acordo entre si.", "Todos os documentos devem estar válidos.", "Não são permitidos armas ou contrabando."};
     
     public JogoTela(Pontuacao pontos) {
         initComponents();  
@@ -42,6 +43,11 @@ public class JogoTela extends javax.swing.JFrame {
         this.pontos = pontos;
         
         dataBotao.setText(Data.gerarDataAtual());
+        regra1.setText("<html>" + regrasArray[0] + "</html>");
+        
+        regra2.setText("<html>" + regrasArray[1] + "</html>");
+        regra3.setText("<html>" + regrasArray[2] + "</html>");
+        regra4.setText("<html>" + regrasArray[3] + "</html>");
                 
         idFoto.setEnabled(false);
         passFoto.setEnabled(false);
@@ -118,6 +124,7 @@ public class JogoTela extends javax.swing.JFrame {
         identidade = new javax.swing.JLabel();
         pontuacaoLabel = new javax.swing.JLabel();
         cronometroLabel = new javax.swing.JLabel();
+        scannear = new javax.swing.JButton();
         idMiniBotao = new javax.swing.JButton();
         permMiniBotao = new javax.swing.JButton();
         passMiniBotao = new javax.swing.JButton();
@@ -297,6 +304,7 @@ public class JogoTela extends javax.swing.JFrame {
         });
         passPainel.add(passNasc, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 110, 20));
 
+        passPais.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         passPais.setContentAreaFilled(false);
         passPais.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         passPais.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +312,7 @@ public class JogoTela extends javax.swing.JFrame {
                 passPaisActionPerformed(evt);
             }
         });
-        passPainel.add(passPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 110, 20));
+        passPainel.add(passPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 120, 20));
 
         passVal.setContentAreaFilled(false);
         passVal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -402,6 +410,19 @@ public class JogoTela extends javax.swing.JFrame {
         getContentPane().add(cronometroLabel);
         cronometroLabel.setBounds(1130, 10, 60, 30);
 
+        scannear.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        scannear.setText("Passar por scanner");
+        scannear.setMaximumSize(new java.awt.Dimension(135, 23));
+        scannear.setMinimumSize(new java.awt.Dimension(135, 23));
+        scannear.setPreferredSize(new java.awt.Dimension(135, 23));
+        scannear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scannearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(scannear);
+        scannear.setBounds(210, 610, 140, 23);
+
         idMiniBotao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ploximo/Imagens/identidademini.png"))); // NOI18N
         idMiniBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -436,7 +457,7 @@ public class JogoTela extends javax.swing.JFrame {
             }
         });
         getContentPane().add(regrasMiniBotao);
-        regrasMiniBotao.setBounds(130, 560, 90, 110);
+        regrasMiniBotao.setBounds(110, 560, 90, 110);
 
         ploximoBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -526,8 +547,6 @@ public class JogoTela extends javax.swing.JFrame {
             pesoBotao.setVisible(false);  
             pessoaBotao.setVisible(false);
         }
-        
-        
     }//GEN-LAST:event_negarBotaoActionPerformed
 
     private void idMiniBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idMiniBotaoActionPerformed
@@ -555,10 +574,8 @@ public class JogoTela extends javax.swing.JFrame {
     }//GEN-LAST:event_pesoBotaoActionPerformed
     
     private void idAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idAltActionPerformed
-        //idAlt.setContentAreaFilled(!idAlt.isContentAreaFilled());
         jogoController.limitarCliques(idAlt, "altura");
         prioridadeExibicao(idPainel);
-
     }//GEN-LAST:event_idAltActionPerformed
 
     private void passaporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passaporteMouseClicked
@@ -566,7 +583,6 @@ public class JogoTela extends javax.swing.JFrame {
 
     private void passFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFotoActionPerformed
         prioridadeExibicao(passPainel);
-
     }//GEN-LAST:event_passFotoActionPerformed
 
     private void permPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permPesoActionPerformed
@@ -582,19 +598,16 @@ public class JogoTela extends javax.swing.JFrame {
     private void idPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idPesoActionPerformed
         jogoController.limitarCliques(idPeso, "peso");
         prioridadeExibicao(idPainel);
-
     }//GEN-LAST:event_idPesoActionPerformed
 
     private void idNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idNomeActionPerformed
         jogoController.limitarCliques(idNome, "nome");
         prioridadeExibicao(idPainel);
-
     }//GEN-LAST:event_idNomeActionPerformed
 
     private void idNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idNascActionPerformed
         jogoController.limitarCliques(idNasc, "nascimento");
         prioridadeExibicao(idPainel);
-
     }//GEN-LAST:event_idNascActionPerformed
 
     private void passValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passValActionPerformed
@@ -605,7 +618,6 @@ public class JogoTela extends javax.swing.JFrame {
     private void passSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passSexoActionPerformed
         jogoController.limitarCliques(passSexo, "sexo");
         prioridadeExibicao(passPainel);
-
     }//GEN-LAST:event_passSexoActionPerformed
 
     private void passPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passPaisActionPerformed
@@ -616,7 +628,6 @@ public class JogoTela extends javax.swing.JFrame {
     private void passNascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passNascActionPerformed
         jogoController.limitarCliques(passNasc,"nascimento");
         prioridadeExibicao(passPainel);
-
     }//GEN-LAST:event_passNascActionPerformed
 
     private void permPassCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permPassCodActionPerformed
@@ -627,25 +638,21 @@ public class JogoTela extends javax.swing.JFrame {
     private void permNacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permNacioActionPerformed
         jogoController.limitarCliques(permNacio, "pais");
         prioridadeExibicao(permPainel);
-
     }//GEN-LAST:event_permNacioActionPerformed
 
     private void permMotivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permMotivoActionPerformed
          jogoController.limitarCliques(permMotivo, "motivo");
          prioridadeExibicao(permPainel);
-
     }//GEN-LAST:event_permMotivoActionPerformed
 
     private void permAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permAltActionPerformed
         jogoController.limitarCliques(permAlt, "altura");
         prioridadeExibicao(permPainel);
-
     }//GEN-LAST:event_permAltActionPerformed
 
     private void permDuracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permDuracaoActionPerformed
         jogoController.limitarCliques(permDuracao, "duracao");
         prioridadeExibicao(permPainel);
-
     }//GEN-LAST:event_permDuracaoActionPerformed
 
     private void permNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permNomeActionPerformed
@@ -656,7 +663,6 @@ public class JogoTela extends javax.swing.JFrame {
     private void permValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permValActionPerformed
         jogoController.limitarCliques(permVal, "validade");
         prioridadeExibicao(permPainel);
-
     }//GEN-LAST:event_permValActionPerformed
 
     private void ploximoBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ploximoBotaoActionPerformed
@@ -669,15 +675,12 @@ public class JogoTela extends javax.swing.JFrame {
             pesoBotao.setVisible(true); 
             pessoaBotao.setVisible(true);
         }
-
     }//GEN-LAST:event_ploximoBotaoActionPerformed
 
     private void regra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regra1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_regra1ActionPerformed
 
     private void regra3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regra3ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_regra3ActionPerformed
 
     private void passNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passNomeActionPerformed
@@ -685,15 +688,12 @@ public class JogoTela extends javax.swing.JFrame {
     }//GEN-LAST:event_passNomeActionPerformed
 
     private void pessoaBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pessoaBotaoActionPerformed
-        // TODO add your handling code here:
-
     }//GEN-LAST:event_pessoaBotaoActionPerformed
 
     private void aprovarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprovarBotaoActionPerformed
             if (temPessoa) {
                 jogoController.calcularPontuacao(this,this.pontos);
-                temPessoa = false;
-            
+                temPessoa = false;   
             
             try {
                 jogoController.aprovarImigrante(this);
@@ -726,7 +726,6 @@ public class JogoTela extends javax.swing.JFrame {
                          o jogador é punido com menos dois pontos*/
                          jogoController.nomearScore(pontos, 
                                     jogoController.insertNome());
-                         pontos.setPontos(pontos.getPontos() - 2);
                          System.out.println("Pontos:" + pontos.getPontos());
                          
                          //jogoController.trocarDeTela(jogo, new FimDoDia(pontos));
@@ -738,18 +737,18 @@ public class JogoTela extends javax.swing.JFrame {
                 jogoController.ataqueTerrista(this,pontos);
            }
             }
-        
-        
-            
     }//GEN-LAST:event_aprovarBotaoActionPerformed
 
     private void idFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFotoActionPerformed
     }//GEN-LAST:event_idFotoActionPerformed
 
     private void dataBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataBotaoActionPerformed
-        // TODO add your handling code here:
         jogoController.limitarCliques(dataBotao, "data atual");
     }//GEN-LAST:event_dataBotaoActionPerformed
+
+    private void scannearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scannearActionPerformed
+        jogoController.pesoCorreto(this);      
+    }//GEN-LAST:event_scannearActionPerformed
 
     
     /**
@@ -835,6 +834,7 @@ public class JogoTela extends javax.swing.JFrame {
     private javax.swing.JLabel regras;
     private javax.swing.JButton regrasMiniBotao;
     private javax.swing.JLayeredPane regrasPainel;
+    private javax.swing.JButton scannear;
     // End of variables declaration//GEN-END:variables
 
     private void iniciarMeusComponentes() {

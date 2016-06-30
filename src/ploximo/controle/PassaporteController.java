@@ -27,18 +27,8 @@ public class PassaporteController {
     nome = pessoa.getNome();
     nascimento = pessoa.getNascimento();
     validade = Data.gerarDataAleatoria(2017, 2020);
-    String cod = Codigo.gerar();
-    /*
-    foto = Foto.gerar();
-    pais = Pais.gerar();
-        
-    nome= Nome.gerar();
-    sNome= Sobrenome.gerar();
-    nascimento = Data.gerar();
-    validade = Data.gerar();
-    String cod = Codigo.gera();
-    
-    */
+    String cod = pessoa.getCodigo();
+ 
     boolean sorte;
     sorte = r.gerarBool();
     if(sorte){sexo = 'M';}else{sexo = 'F';}
@@ -46,6 +36,5 @@ public class PassaporteController {
     Passaporte pass = new Passaporte(nome,nascimento,sexo,pais,validade,foto,cod);
     
     return pass;
-        
     }
 }

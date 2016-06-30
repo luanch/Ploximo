@@ -22,14 +22,13 @@ public class PessoaController {
     Randomizador r = new Randomizador();
     boolean terrorista;
     boolean deveEntrar;
+    String codigo;
     
     public Pessoa gerar() throws IOException{
         String foto = Foto.gerar();
         String nacionalidade = Nacionalidade.gerar();
-        String nome = Nome.gerar();
         GregorianCalendar nascimento = Data.gerarDataAleatoria(1940, 2000);
-        String stringData = FormatadorDeDatas.getDataFormatada(nascimento);
-        boolean terror = r.gerarBool();
+        
         String peso = gerarPesoFormatado();
         String altura = gerarAlturaFormatada(peso);
         char sexo = gerarSexo(r, foto);
@@ -37,9 +36,16 @@ public class PessoaController {
         String duracao = Duracao.gerar();
         terrorista = ehTerrorista(r);
         deveEntrar = deveEntrar(r);
-        
+        codigo = Codigo.gerar();
+        String nome;
+        if(sexo == 'M'){
+            nome = Nome.gerarHomem();
+        }
+        else
+            nome = Nome.gerarMulher();
+
         Pessoa pessoa = new Pessoa(nome,nascimento, sexo, nacionalidade,
-                                    peso, altura, foto, motivo, duracao, terrorista, deveEntrar);
+                                    peso, altura, foto, motivo, duracao, terrorista, deveEntrar, codigo);
         PassaporteController pC = new PassaporteController();
         Passaporte pass = pC.gerar(pessoa);
         pessoa.setPass(pass);
@@ -49,21 +55,7 @@ public class PessoaController {
         PermissaoController permC = new PermissaoController();
         Permissao perm = permC.gerar(pessoa);
         pessoa.setPerm(perm);
-        
-        /*
-        System.out.println("nome: "+ nome);
-        System.out.println("sobrenome"+sobrenome);
-        System.out.println("data "+stringData);
-        System.out.println("sexo"+sexo);
-        System.out.println("nacionalidade"+ nacionalidade);
-        System.out.println("peso"+peso);
-        System.out.println("altura"+ altura);
-        System.out.println("foto"+foto);
-        System.out.println("terrorista"+ terror);
-        System.out.println("identidade"+id);
-        System.out.println("passaporte"+pass);
-        System.out.println("permissao"+perm);
-        */
+
         return pessoa;
     }
 
@@ -74,8 +66,6 @@ public class PessoaController {
     public boolean isDeveEntrar() {
         return deveEntrar;
     }
-    
-    
     
     private boolean deveEntrar(Randomizador r){
         return r.gerarBool();
@@ -93,17 +83,17 @@ public class PessoaController {
     }
 
     private char gerarSexo(Randomizador rand, String foto) {
-        if(foto.contains("M")){
-            return 'M';
+        if(foto.contains("H")){
+            return 'H';
         }
-        return 'F';
+        return 'M';
     }
 
     private String gerarPesoFormatado() {
         return Double.toString(r.gerarInt(50)+ 60 + r.gerarDouble()).replace('.', ',').concat(" kg");
     } 
 
-     private String gerarAlturaFormatada(String stringPeso) {
+    private String gerarAlturaFormatada(String stringPeso) {
         String[] arrayPeso = stringPeso.split(" ");
         double peso = Double.valueOf(arrayPeso[0].replace(',', '.'));
         double porcentPeso = ((peso-10)%100)/100;
