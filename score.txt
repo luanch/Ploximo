@@ -12,3 +12,4 @@ z1,-3
 z2,-3
 zz,-3
 jogador,10
+Player1,120
