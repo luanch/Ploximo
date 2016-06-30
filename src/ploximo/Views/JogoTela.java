@@ -220,6 +220,7 @@ public class JogoTela extends javax.swing.JFrame {
         });
         permPainel.add(permAlt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 80, 20));
 
+        permDuracao.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         permDuracao.setContentAreaFilled(false);
         permDuracao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         permDuracao.addActionListener(new java.awt.event.ActionListener() {
