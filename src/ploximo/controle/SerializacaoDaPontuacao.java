@@ -72,13 +72,15 @@ public class SerializacaoDaPontuacao {
         }
     }
     
-    public void LerSerialização(){        
+    public String[][] LerSerialização(){     
+       String [][] mscores = null;
         try{
             try(XMLDecoder xmlDecoder = new XMLDecoder(
                 new FileInputStream("pontuação.xml"))) {
                 
                 score = (Pontuacao[]) xmlDecoder.readObject();
                 Pontuacao aux; 
+                 mscores = new String [score.length][2];
                 for(int i=0;i<score.length-1;i++){
                     for(int j=1;j<score.length;j++){
                         if(score[i].getPontos() < score[j].getPontos()){
@@ -89,16 +91,22 @@ public class SerializacaoDaPontuacao {
                     }
                 }
                 /*Agora que a ordenação dos scores acabou, podemos exibí-los*/
+                
                 System.out.println("High Score:");
+                int i =0;
                 for(Pontuacao p:score){
                     System.out.print("Nome:" + p.getNome());
                     System.out.print(" Pontos:" + p.getPontos());
+                    mscores[i][0] = p.getNome();
+                    mscores[i][1] += p.getPontos();
                     System.out.println();
+                    i++;
                 }
             }
         }
         catch(IOException e){
             System.out.println(e.getMessage());
         }
+        return mscores;
     }
 }

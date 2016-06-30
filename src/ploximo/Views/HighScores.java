@@ -6,7 +6,9 @@
 package ploximo.Views;
 import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.JTextArea;
 import ploximo.controle.JogoController;
+import ploximo.controle.SerializacaoDaPontuacao;
 
 /**
  *
@@ -24,10 +26,22 @@ public class HighScores extends javax.swing.JFrame {
         botoes.add(menuBotao);
         jogoController.configurarBotoes(botoes);
         
+        //jTextArea1 = new JTextArea(); 
+        SerializacaoDaPontuacao sp = new SerializacaoDaPontuacao();
+        String [][] matriz = sp.LerSerialização();
+        jTextArea1.append("|----Nome----|----Pontos----|\n");
+        
+        for(int i = 0;i<matriz.length;i++){
+            String score = "|**" + matriz[i][0] + "**|**" + matriz[i][1] + "**|";
+            jTextArea1.append(score.replaceAll("null",""));
+            jTextArea1.append("\n");
+        }
+        
+        jTextArea1.append("|------------|------------|");
         this.setSize(fundo.getWidth(), fundo.getHeight() + 28);
 
-        highScoresTabela.setRowHeight(30);
-        highScoresTabela.getTableHeader().setFont(new Font("PixelPlay", Font.BOLD, 18));
+       highScoresTabela.setRowHeight(30);
+       highScoresTabela.getTableHeader().setFont(new Font("PixelPlay", Font.BOLD, 18));
     }
 
     /**
@@ -76,13 +90,12 @@ public class HighScores extends javax.swing.JFrame {
             }
         });
         highScoresTabela.setAutoscrolls(false);
-        highScoresTabela.setFocusTraversalKeysEnabled(false);
         highScoresTabela.setFocusable(false);
         highScoresTabela.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(highScoresTabela);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(370, 200, 480, 150);
+        jScrollPane1.setBounds(470, 240, 210, 120);
 
         menuBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
