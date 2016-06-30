@@ -59,11 +59,11 @@ public class Pessoa {
         this.finalize();
     }
 
-    public boolean getTerrorista() {
+    public boolean isTerrorista() {
         return terrorista;
     }
 
-    public boolean imigranteDeveEntrar() {
+    public boolean deveEntrar() {
         return deveEntrar;
     }
     

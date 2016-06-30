@@ -34,8 +34,8 @@ public class PessoaController {
         char sexo = gerarSexo(r, foto);
         String motivo = Motivo.gerar();
         String duracao = Duracao.gerar();
-        terrorista = ehTerrorista(r);
-        deveEntrar = deveEntrar(r);
+        terrorista = calcularTerrorista(r);
+        deveEntrar = calculaDeveEntrar(r);
         codigo = Codigo.gerar();
         String nome;
         if(sexo == 'M'){
@@ -63,15 +63,15 @@ public class PessoaController {
         return terrorista;
     }
 
-    public boolean isDeveEntrar() {
+    public boolean deveEntrar() {
         return deveEntrar;
     }
     
-    private boolean deveEntrar(Randomizador r){
+    private boolean calculaDeveEntrar(Randomizador r){
         return r.gerarBool();
     }
     
-    private boolean ehTerrorista(Randomizador r) { // 12,5% (1/8) de chance de ser terrorista 
+    private boolean calcularTerrorista(Randomizador r) { // 12,5% (1/8) de chance de ser terrorista 
         boolean deveSerTerrorista = true;
         for(int i=0; i<3;i++){
             if(r.gerarBool()){

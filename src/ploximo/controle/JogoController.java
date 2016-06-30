@@ -30,13 +30,13 @@ import ploximo.Views.JogoTela;
 public class JogoController {
     private static final int TAMANHO_BARRA_SUPERIOR = 30;
     Pessoa imigrante;
-    Randomizador r;
+    Randomizador r = new Randomizador();
     DocumentosController dc = new DocumentosController();
     JButton botao1;
     JButton botao2;
     String tipo1;
     String tipo2;
-    
+    ArrayList<JButton> botoesClicaveis = new ArrayList<>();
     /**
      * Inicia as telas com tamanho do fundo. O fundo foi passado por 
      * parametro porque não conseguimos acessá-lo daqui
@@ -71,7 +71,7 @@ public class JogoController {
             pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
         }
         else{
-            if(imigrante.getTerrorista()){
+            if(imigrante.isTerrorista()){
                 pontuacao.setPontos(pontuacao.getPontos()-100);
                 pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
             }
@@ -90,9 +90,9 @@ public class JogoController {
     */
     public boolean verificarCorretude (JogoTela jogo) {
         if (tipo1 == null) {
-            return !imigrante.imigranteDeveEntrar();
+            return !imigrante.deveEntrar();
         }  
-        if( (botao1.getText() != null) && (botao2.getText() != null) ){   
+        if( (botao1 != null) && (botao2 != null) ){   
             if (!tipo1.equals("validade") || !tipo2.equals("validade")) {
                 if (tipo1.equals(tipo2)) {
                     if (!botao1.getText().equals(botao2.getText())) {
@@ -115,7 +115,7 @@ public class JogoController {
                         }
                     }
                     else if(tipo1.equals("peso") && tipo2.equals("peso")){
-                        if(imigrante.imigranteDeveEntrar()){
+                        if(imigrante.deveEntrar()){
                             return false;
                         }
                     }
@@ -132,12 +132,11 @@ public class JogoController {
     }
     
     public void chamarImigrante(JogoTela jogo) {
-        Randomizador r = new Randomizador();
         if (imigrante == null) {
              try {
                 imigrante = jogo.getPessoaController().gerar(); 
 
-                if (!imigrante.imigranteDeveEntrar()) {
+                if (!imigrante.deveEntrar()) {
                     imigrante = dc.determinarDocumentoErrado(jogo, imigrante);
                 }
                 else{
@@ -150,7 +149,7 @@ public class JogoController {
                 adicionarInformacoesPass(jogo);
                
                 jogo.getPesoBotao().setText(imigrante.getPeso());
-
+                botoesClicaveis.add(jogo.getPesoBotao());
                 Foto foto = new Foto();
                 foto.setarImagemNoBotao(jogo.getPessoaBotao(), imigrante.getFoto()); 
             } catch (IOException ex) {
@@ -163,10 +162,15 @@ public class JogoController {
         Identidade id = imigrante.getId();
         jogo.getIdAlt().setText(id.getAltura());
         jogo.getIdNome().setText(id.getNome());
-        jogo.getIdNasc().setText(imigrante.getDataFormatada(id.getDataNascimento()));
+        jogo.getIdNasc().setText(imigrante.getDataFormatada(id.getDataNascimento()));        
         jogo.getIdPeso().setText(id.getPeso());
         Foto foto = new Foto();
         foto.setarImagemNoBotao(jogo.getIdFoto(), id.getFoto()); 
+        
+        botoesClicaveis.add(jogo.getIdAlt());     
+        botoesClicaveis.add(jogo.getIdNome());
+        botoesClicaveis.add(jogo.getIdNasc());
+        botoesClicaveis.add(jogo.getIdPeso());
     }
     
     private void adicionarInformacoesPerm(JogoTela jogo) {
@@ -178,9 +182,18 @@ public class JogoController {
         jogo.getPermNome().setText(perm.getNome());
         jogo.getPermPassCod().setText(perm.getCodPassaporte());
         jogo.getPermPeso().setText(perm.getPeso());
-        jogo.getPermVal().setText(imigrante.getDataFormatada(perm.getValidade()));              
+        jogo.getPermVal().setText(imigrante.getDataFormatada(perm.getValidade()));
+        
+        botoesClicaveis.add(jogo.getPermAlt());     
+        botoesClicaveis.add(jogo.getPermDuracao());
+        botoesClicaveis.add(jogo.getPermMotivo());
+        botoesClicaveis.add(jogo.getPermNacio());
+        botoesClicaveis.add(jogo.getPermNome());     
+        botoesClicaveis.add(jogo.getPermPassCod());
+        botoesClicaveis.add(jogo.getPermPeso());
+        botoesClicaveis.add(jogo.getPermVal());      
     }
-    
+ 
     private void adicionarInformacoesPass(JogoTela jogo){
         Passaporte passaporte = imigrante.getPass();
         jogo.getPassCid().setText(passaporte.getPais());
@@ -191,6 +204,13 @@ public class JogoController {
         jogo.getPassVal().setText(imigrante.getDataFormatada(passaporte.getValidade()));
         Foto foto = new Foto();
         foto.setarImagemNoBotao(jogo.getPassFoto(), passaporte.getFoto()); 
+        
+        botoesClicaveis.add(jogo.getPassCid());      
+        botoesClicaveis.add(jogo.getPassCod());      
+        botoesClicaveis.add(jogo.getPassNasc());      
+        botoesClicaveis.add(jogo.getPassNome());      
+        botoesClicaveis.add(jogo.getPassSexo());      
+        botoesClicaveis.add(jogo.getPassVal());      
     }
 
     /**
@@ -275,6 +295,7 @@ public class JogoController {
     public void aprovarImigrante(JogoTela jogo) throws Throwable {
         imigrante = jogo.getImigrante();
         if (imigrante != null) {
+            zerarInformacoesImigrante();
             imigrante.deletar();
             jogo.getPesoBotao().setText("");     
             //Foto foto = new Foto();
@@ -286,6 +307,7 @@ public class JogoController {
         imigrante = jogo.getImigrante();
         if (imigrante != null) {
             imigrante.deletar();
+            zerarInformacoesImigrante();
             jogo.getPesoBotao().setText("");     
             //Foto foto = new Foto();
             //foto.retirarImagemNoBotao(jogo.getPessoaBotao());     
@@ -315,12 +337,12 @@ public class JogoController {
         );    
     }
 
-    public int pesoCorreto(JogoTela jogo) {
+    public void pesoCorreto(JogoTela jogo) {
         if(tipo1 != null && tipo2 != null){
             if(tipo1.equals("peso") && tipo2.equals("peso")){
-                if(imigrante.imigranteDeveEntrar()){
-                   JOptionPane.showMessageDialog(jogo, "Nada de Errado encontrado ao escanneá-lo!!");
-                }
+                if(imigrante.deveEntrar()){
+                    JOptionPane.showMessageDialog(jogo, "Nada de Errado encontrado ao escanneá-lo!!");
+                }   
                 else if(r.gerarBool()){
                     JOptionPane.showMessageDialog(jogo, "Hmm.. Acho que temos uma arma escondida!!");
                 }
@@ -328,6 +350,38 @@ public class JogoController {
 
             }
         }
-        return 0;
+    }
+    
+    public void fazerAtaqueTerrorista (JogoTela jogo){
+        jogo.getAtaqueLabel().setVisible(true);
+                   jogo.getAtaqueLabel().setIcon(
+                                new ImageIcon("src/ploximo/Imagens/ataque.gif"));
+                   jogo.getPloximoBotao().setEnabled(false);
+                     new java.util.Timer().schedule( 
+                        new java.util.TimerTask() {
+                            @Override
+                            public void run() {
+                                jogo.getAtaqueLabel().setVisible(false);
+
+                                /*se acontecer um ataque terrorista,
+                                o jogador é punido com menos dois pontos*/
+                                nomearScore(jogo.getPontos(),insertNome());
+                                System.out.println("Pontos:" + jogo.getPontos().getPontos());
+
+                                //jogoController.trocarDeTela(jogo, new FimDoDia(pontos));
+                                jogo.getPloximoBotao().setEnabled(true);
+                            }
+                        }, 5000 );
+                    ataqueTerrista(jogo,jogo.getPontos());
+    }
+
+    private void zerarInformacoesImigrante() {
+        for(JButton botao: botoesClicaveis){
+            botao.setSelected(false);
+        }
+        botao1 = null;
+        botao2 = null;
+        tipo1 = null;
+        tipo2 = null;
     }
 }
