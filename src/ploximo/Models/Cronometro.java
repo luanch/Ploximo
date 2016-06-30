@@ -6,6 +6,7 @@
 package ploximo.Models;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import ploximo.Views.JogoTela;
 import ploximo.controle.JogoController;
 import ploximo.controle.Pontuacao;
@@ -18,9 +19,11 @@ public class Cronometro extends Thread{
     private final JogoTela jt;
     private final JogoController jogoController = new JogoController();
     private final JLabel hr;
-    public Cronometro(JogoTela jogoTela) {
+    private final Pontuacao pt;
+    public Cronometro(JogoTela jogoTela, Pontuacao pt) {
         this.jt = jogoTela;
         this.hr = jogoTela.getCronometroLabel();
+        this.pt = pt;
     }
     @Override
     public void run() {
@@ -46,7 +49,8 @@ public class Cronometro extends Thread{
         } catch (InterruptedException ex) {
            ex.printStackTrace();
         }
-        Pontuacao pt = new Pontuacao();
+        pt.setNome(JOptionPane.showInputDialog("Insira seu nome:"));
+        
         jogoController.terminarDia(jt, 0,pt);
     }
     private String completaComZero(Integer i) {

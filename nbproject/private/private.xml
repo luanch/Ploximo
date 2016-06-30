@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Luan/Documents/NetBeansProjects/Ploximo/src/ploximo/Models/Pessoa.java</file>
-            <file>file:/C:/Users/Luan/Documents/NetBeansProjects/Ploximo/src/ploximo/controle/DocumentosController.java</file>
-            <file>file:/C:/Users/Luan/Documents/NetBeansProjects/Ploximo/src/ploximo/controle/PessoaController.java</file>
-            <file>file:/C:/Users/Luan/Documents/NetBeansProjects/Ploximo/src/ploximo/controle/JogoController.java</file>
-            <file>file:/C:/Users/Luan/Documents/NetBeansProjects/Ploximo/src/ploximo/Views/HighScores.java</file>
-            <file>file:/C:/Users/Luan/Documents/NetBeansProjects/Ploximo/src/ploximo/Views/JogoTela.java</file>
+            <file>file:/C:/Users/Cliente/Desktop/plojeto/Ploximo/src/ploximo/Views/HighScores.java</file>
+            <file>file:/C:/Users/Cliente/Desktop/plojeto/Ploximo/src/ploximo/Views/JogoTela.java</file>
+            <file>file:/C:/Users/Cliente/Desktop/plojeto/Ploximo/src/ploximo/Models/Cronometro.java</file>
+            <file>file:/C:/Users/Cliente/Desktop/plojeto/Ploximo/src/ploximo/controle/Pontuacao.java</file>
+            <file>file:/C:/Users/Cliente/Desktop/plojeto/Ploximo/src/ploximo/Models/Pessoa.java</file>
+            <file>file:/C:/Users/Cliente/Desktop/plojeto/Ploximo/src/ploximo/controle/SerializacaoDaPontuacao.java</file>
+            <file>file:/C:/Users/Cliente/Desktop/plojeto/Ploximo/src/ploximo/Models/Permissao.java</file>
         </group>
     </open-files>
 </project-private>
