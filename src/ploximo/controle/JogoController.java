@@ -105,32 +105,28 @@ public class JogoController {
             return !imigrante.deveEntrar();
         }  
         if( (botao1 != null) && (botao2 != null) ){   
-            if (!tipo1.equals("validade") || !tipo2.equals("validade")) {
-                if (tipo1.equals(tipo2)) {
-                    if (!botao1.getText().equals(botao2.getText())) {
-                        return true;
-                    }
+            if (tipo2.equals("validade") && tipo1.equals("data atual")) {
+                if (tipo2.contains("2013") || tipo2.contains("2014") 
+                            || tipo2.contains("2015")) {
+                    return true;
                 }
             }
             else {
-                if (tipo2.equals("validade") && tipo1.equals("data atual")) {
-                    if (tipo2.contains("2013") || tipo2.contains("2014") 
-                                || tipo2.contains("2015")) {
-                        return true;
+                if (tipo1.equals("validade") && tipo2.equals("data atual")) {
+                    if (tipo1.contains("2013") || tipo1.contains("2014") 
+                            || tipo1.contains("2015")) {
+                            return true;
                     }
                 }
-                else {
-                    if (tipo1.equals("validade") && tipo2.equals("data atual")) {
-                        if (tipo1.contains("2013") || tipo1.contains("2014") 
-                                || tipo1.contains("2015")) {
-                                return true;
-                        }
+                else if(tipo1.equals("peso") && tipo2.equals("peso")){
+                    if(imigrante.deveEntrar()){
+                        return false;
                     }
-                    else if(tipo1.equals("peso") && tipo2.equals("peso")){
-                        if(imigrante.deveEntrar()){
-                            return false;
+                }
+                else if (tipo1.equals(tipo2)) {
+                        if (!botao1.getText().equals(botao2.getText())) {
+                            return true;
                         }
-                    }
                 }
             }
         }
@@ -138,6 +134,7 @@ public class JogoController {
     }
     
     public void chamarImigrante(JogoTela jogo) {
+        imigrante = jogo.getImigrante();
         if (imigrante == null) {
              try {
                 imigrante = jogo.getPessoaController().gerar(); 
@@ -302,8 +299,8 @@ public class JogoController {
     public void aprovarImigrante(JogoTela jogo) throws Throwable {
         imigrante = jogo.getImigrante();
         if (imigrante != null) {
-            zerarInformacoesImigrante();
-            imigrante.deletar();
+            zerarInformacoesImigrante(jogo);
+            //imigrante.deletar();
             jogo.getPesoBotao().setText("");     
             //Foto foto = new Foto();
             //foto.retirarImagemNoBotao(jogo.getPessoaBotao());     
@@ -313,8 +310,8 @@ public class JogoController {
     public void negarImigrante(JogoTela jogo) throws Throwable {
         imigrante = jogo.getImigrante();
         if (imigrante != null) {
-            imigrante.deletar();
-            zerarInformacoesImigrante();
+            //imigrante.deletar();
+            zerarInformacoesImigrante(jogo);
             jogo.getPesoBotao().setText("");     
             //Foto foto = new Foto();
             //foto.retirarImagemNoBotao(jogo.getPessoaBotao());     
@@ -348,7 +345,7 @@ public class JogoController {
         if(tipo1 != null && tipo2 != null){
             if(tipo1.equals("peso") && tipo2.equals("peso")){
                 if(imigrante.deveEntrar()){
-                    JOptionPane.showMessageDialog(jogo, "Nada de Errado encontrado ao escanneá-lo!!");
+                    JOptionPane.showMessageDialog(jogo, "Nada de errado encontrado ao escanneá-lo!!");
                 }   
                 else if(r.gerarBool()){
                     JOptionPane.showMessageDialog(jogo, "Hmm.. Acho que temos uma arma escondida!!");
@@ -382,10 +379,12 @@ public class JogoController {
                     ataqueTerrista(jogo,jogo.getPontos());
     }
 
-    private void zerarInformacoesImigrante() {
+    private void zerarInformacoesImigrante(JogoTela jogo) {
         for(JButton botao: botoesClicaveis){
             botao.setContentAreaFilled(false);
         }
+        imigrante = null;
+        jogo.setImigrante(imigrante);
         botao1 = null;
         botao2 = null;
         tipo1 = null;
