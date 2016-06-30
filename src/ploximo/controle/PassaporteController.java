@@ -31,7 +31,7 @@ public class PassaporteController {
  
     boolean sorte;
     sorte = r.gerarBool();
-    if(sorte){sexo = 'M';}else{sexo = 'F';}
+    if(sorte){sexo = 'H';}else{sexo = 'M';}
     
     Passaporte pass = new Passaporte(nome,nascimento,sexo,pais,validade,foto,cod);
     

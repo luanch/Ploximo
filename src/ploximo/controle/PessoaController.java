@@ -34,8 +34,11 @@ public class PessoaController {
         char sexo = gerarSexo(r, foto);
         String motivo = Motivo.gerar();
         String duracao = Duracao.gerar();
-        terrorista = calcularTerrorista(r);
         deveEntrar = calculaDeveEntrar(r);
+        if(deveEntrar){
+            terrorista = calcularTerrorista(r);
+        }
+        terrorista = false;
         codigo = Codigo.gerar();
         String nome;
         if(sexo == 'M'){
@@ -90,7 +93,7 @@ public class PessoaController {
     }
 
     private String gerarPesoFormatado() {
-        return Double.toString(r.gerarInt(50)+ 60 + r.gerarDouble()).replace('.', ',').concat(" kg");
+        return Double.toString(r.gerarInt(50)+ 40 + r.gerarDouble()).replace('.', ',').concat(" kg");
     } 
 
     private String gerarAlturaFormatada(String stringPeso) {

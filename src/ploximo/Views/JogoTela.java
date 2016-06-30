@@ -9,7 +9,6 @@ import java.awt.Container;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -1104,4 +1103,5 @@ public class JogoTela extends javax.swing.JFrame {
     public void setPontos(Pontuacao pontos) {
         this.pontos = pontos;
     }
+    
 }

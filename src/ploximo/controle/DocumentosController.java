@@ -54,15 +54,19 @@ public class DocumentosController {
         switch (qualAtributo) {
             case 0: //erro é no peso
                 id.setPeso(alterarPeso(id.getPeso()));
+                System.out.println("erro id peso");
                 break;
             case 1: //erro é no nome
                 id.setNome(alterarNome(id.getNome(), sexo));
+                System.out.println("erro id nome");
                 break;
             case 2: //erro é no nascimento
                 id.setDataNascimento(Data.gerarDataAleatoria(1930,2000));
+                System.out.println("erro id dt nasc");
                 break;
             case 3: //erro é na altura
                 id.setAltura(alterarAltura(id.getAltura()));
+                System.out.println("erro id altura");
                 break;
         }   
         return id;
@@ -75,18 +79,26 @@ public class DocumentosController {
         switch (qualAtributo) {
             case 0: //pais
                 pass.setPais(alterarPais(pass.getPais()));
+                System.out.println("Erro pass pais");
                 break;
             case 1: //erro é no nome
                 pass.setNome(alterarNome(pass.getNome(), sexo));
+                System.out.println("erro pass nome");
                 break;
             case 2: //validade
                 pass.setValidade(Data.gerarDataAleatoria(2013,2015));
+                System.out.println("erro pass validade");
                 break; 
             case 3: //erro é no nascimento
                 pass.setDataNascimento(Data.gerarDataAleatoria(1930,2000));
+                System.out.println("erro pass dt nasc");
                 break;
             case 4: //erro de codigo
                 pass.setCodigo(alterarCodigo(pass.getCodigo()));
+                System.out.println("erro pass cod");
+                break;
+            case 5:
+                pass.setSexo(alterarSexo(sexo));
                 break;
         }
         return pass;
@@ -99,21 +111,27 @@ public class DocumentosController {
         switch (qualAtributo) {
             case 0: //peso
                 perm.setPeso(alterarPeso(perm.getPeso()));
+                System.out.println("erro perm peso");
                 break;
             case 1: //erro é no nome
                 perm.setNome(alterarNome(perm.getNome(), sexo));
+                System.out.println("erro perm nome");
                 break;
             case 2: //pais
                 perm.setNacionalidade(alterarPais(perm.getNacionalidade()));
+                System.out.println("erro perm nacio");
                 break;
             case 3: //altura
                 perm.setAltura(alterarAltura(perm.getAltura()));
+                System.out.println("erro perm altura");
                 break;
             case 4: //validade
                 perm.setValidade(Data.gerarDataAleatoria(2013,2015));
+                System.out.println("erro perm validade");
                 break;
             case 5: // codigo
                 perm.setCodPassaporte(alterarCodigo(perm.getCodPassaporte()));
+                System.out.println("erro perm codigo pass");
         }
         return perm;
     }
