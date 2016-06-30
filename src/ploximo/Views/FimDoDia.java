@@ -99,6 +99,7 @@ public class FimDoDia extends javax.swing.JFrame {
 
     private void salvarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarBotaoActionPerformed
         System.out.println("salvar");
+        //novo para o xml appendable
         try {
             // TODO add your handling code here:
             pontos.armazenar();
@@ -106,9 +107,26 @@ public class FimDoDia extends javax.swing.JFrame {
             Logger.getLogger(FimDoDia.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Erro de XML.");
         }
-        Pontuacao[] serie = {this.pontos};
+        //Pontuacao[] serie = {this.pontos};
         SerializacaoDaPontuacao serialpontos = new SerializacaoDaPontuacao();
-        serialpontos.serializar(serie);
+        ArrayList<Pontuacao> ob = null;
+        try {
+            System.out.println("ainda não montou o vetor");
+             ob = serialpontos.montarVetor("score.txt");
+             System.out.println("Montou o vetor");
+        } catch (IOException ex) {
+            Logger.getLogger(FimDoDia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        Pontuacao [] p = new Pontuacao[ob.size()];
+        for(int i = 0; i < ob.size();i++){
+         p[i] = ob.get(i);
+         System.out.println("p[i] = " + p[i].getNome());
+         System.out.println("ob[i] = " + ob.get(i).getNome());
+        }
+        System.out.println("ainda não serializou");
+        serialpontos.serializar(p);
+        System.out.println("serializou");
         serialpontos.LerSerialização();
     }//GEN-LAST:event_salvarBotaoActionPerformed
 

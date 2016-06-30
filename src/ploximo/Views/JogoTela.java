@@ -116,6 +116,7 @@ public class JogoTela extends javax.swing.JFrame {
         idPeso = new javax.swing.JButton();
         idNome = new javax.swing.JButton();
         identidade = new javax.swing.JLabel();
+        pontuacaoLabel = new javax.swing.JLabel();
         cronometroLabel = new javax.swing.JLabel();
         idMiniBotao = new javax.swing.JButton();
         permMiniBotao = new javax.swing.JButton();
@@ -391,7 +392,12 @@ public class JogoTela extends javax.swing.JFrame {
         getContentPane().add(idPainel);
         idPainel.setBounds(770, 470, 320, 220);
 
-        cronometroLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pontuacaoLabel.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 18)); // NOI18N
+        pontuacaoLabel.setText("Pontuação: 0");
+        getContentPane().add(pontuacaoLabel);
+        pontuacaoLabel.setBounds(460, 10, 220, 30);
+
+        cronometroLabel.setFont(new java.awt.Font("Leelawadee UI Semilight", 1, 18)); // NOI18N
         cronometroLabel.setText("05:00");
         getContentPane().add(cronometroLabel);
         cronometroLabel.setBounds(1130, 10, 60, 30);
@@ -499,7 +505,7 @@ public class JogoTela extends javax.swing.JFrame {
 
     private void negarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_negarBotaoActionPerformed
         if (temPessoa) {
-            jogoController.calcularPontuação(this,this.pontos);
+            jogoController.calcularPontuacao(this,this.pontos);
         
         System.out.println("NomeJogador:" + pontos.getNome());
         System.out.println("Pontuação:" + pontos.getPontos());
@@ -507,7 +513,8 @@ public class JogoTela extends javax.swing.JFrame {
             try {
                 jogoController.negarImigrante(this);
             } catch (Throwable ex) {
-                Logger.getLogger(JogoTela.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JogoTela.class.getName()).log(Level.SEVERE,
+                                                                    null, ex);
             }
             
             passPainel.setVisible(false);
@@ -683,11 +690,16 @@ public class JogoTela extends javax.swing.JFrame {
     }//GEN-LAST:event_pessoaBotaoActionPerformed
 
     private void aprovarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprovarBotaoActionPerformed
-            temPessoa = false;
+            if (temPessoa) {
+                jogoController.calcularPontuacao(this,this.pontos);
+                temPessoa = false;
+            
+            
             try {
-                jogoController.negarImigrante(this);
+                jogoController.aprovarImigrante(this);
             } catch (Throwable ex) {
-                Logger.getLogger(JogoTela.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JogoTela.class.getName()).log(Level.SEVERE,
+                                                                    null, ex);
             }
             
             this.passPainel.setVisible(false);
@@ -700,7 +712,8 @@ public class JogoTela extends javax.swing.JFrame {
             pessoaBotao.setVisible(false);
             if (pc.isTerrorista()) {
                ataqueLabel.setVisible(true);
-               ataqueLabel.setIcon(new ImageIcon("src/ploximo/Imagens/ataque.gif"));
+               ataqueLabel.setIcon(
+                            new ImageIcon("src/ploximo/Imagens/ataque.gif"));
                JogoTela jogo = this;
                ploximoBotao.setEnabled(false);
                  new java.util.Timer().schedule( 
@@ -709,8 +722,10 @@ public class JogoTela extends javax.swing.JFrame {
                      public void run() {
                          ataqueLabel.setVisible(false);
                          
-                         /*se acontecer um ataque terrorista, o jogador é punido com menos dois pontos*/
-                         jogoController.nomearScore(pontos, jogoController.insertNome());
+                         /*se acontecer um ataque terrorista,
+                         o jogador é punido com menos dois pontos*/
+                         jogoController.nomearScore(pontos, 
+                                    jogoController.insertNome());
                          pontos.setPontos(pontos.getPontos() - 2);
                          System.out.println("Pontos:" + pontos.getPontos());
                          
@@ -722,6 +737,9 @@ public class JogoTela extends javax.swing.JFrame {
          );
                 jogoController.ataqueTerrista(this,pontos);
            }
+            }
+        
+        
             
     }//GEN-LAST:event_aprovarBotaoActionPerformed
 
@@ -809,6 +827,7 @@ public class JogoTela extends javax.swing.JFrame {
     private javax.swing.JButton pesoBotao;
     private javax.swing.JButton pessoaBotao;
     private javax.swing.JButton ploximoBotao;
+    private javax.swing.JLabel pontuacaoLabel;
     private javax.swing.JButton regra1;
     private javax.swing.JButton regra2;
     private javax.swing.JButton regra3;
@@ -1091,4 +1110,13 @@ public class JogoTela extends javax.swing.JFrame {
     public void setCronometroLabel(JLabel cronometroLabel) {
         this.cronometroLabel = cronometroLabel;
     }
+
+    public JLabel getPontuacaoLabel() {
+        return pontuacaoLabel;
+    }
+
+    public void setPontuacaoLabel(JLabel pontuacaoLabel) {
+        this.pontuacaoLabel = pontuacaoLabel;
+    }
+    
 }

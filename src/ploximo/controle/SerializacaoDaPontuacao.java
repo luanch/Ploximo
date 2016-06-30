@@ -7,9 +7,13 @@ package ploximo.controle;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,7 +23,37 @@ public class SerializacaoDaPontuacao {
     
     private Pontuacao score[];//vetor de pontuação que receberá a decodificação do encoder xml.
     
-    public void serializar(Pontuacao pontos []){   
+    public ArrayList<Pontuacao> montarVetor(String path) throws FileNotFoundException, IOException {
+    
+        BufferedReader buffRead = new BufferedReader(new FileReader(path));
+        String linha = buffRead.readLine();
+        ArrayList<Pontuacao>  ps = new ArrayList<Pontuacao>();
+        
+        
+        while (true) {
+            if (linha != null) {
+               Pontuacao pontua = new Pontuacao();
+               String[] line;
+               line = linha.split(",");
+               System.out.println("Ponto = " + line[0] +" e "+ "Valor=" + line[1]);
+               
+               pontua.setNome(line[0]);
+               pontua.setPontos(Integer.parseInt(line[1]));
+               ps.add(pontua);
+               
+               
+            }
+            else{
+                break;
+            }
+            linha = buffRead.readLine();
+        }
+
+        buffRead.close();
+        return ps;        
+    }
+    
+    public void serializar(Pontuacao [] pontos){   
         try{
             XMLEncoder xmlEncoder = null;
             try {
