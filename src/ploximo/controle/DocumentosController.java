@@ -88,9 +88,6 @@ public class DocumentosController {
             case 4: //erro de codigo
                 pass.setCodigo(alterarCodigo(pass.getCodigo()));
                 break;
-            case 5:
-                pass.setSexo(alterarSexo(sexo));
-                break;
         }
         return pass;
     }
@@ -163,12 +160,6 @@ public class DocumentosController {
             }
         }
         return paisNovo;
-    }
-
-    private char alterarSexo(char sexo) {
-        if(sexo == 'H')
-            return 'M';
-        return 'H';
     }
 
     private String alterarCodigo(String codigoAntigo) throws IOException {

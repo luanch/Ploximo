@@ -63,7 +63,7 @@ public class JogoController {
     
     public void calcularPontuacao(JogoTela jogo, Pontuacao pontuacao){
         JLabel pontuacaoLabel = jogo.getPontuacaoLabel();
-        
+        imigrante = jogo.getImigrante();
         String[] pontuacaoArray = pontuacaoLabel.getText().split(" ");
         if(jogo.clicouEmAprovar()){
             if(imigrante.deveEntrar()){
@@ -87,46 +87,43 @@ public class JogoController {
                 pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
             }
             else{
-                if(imigrante.isTerrorista()){
-                    pontuacao.setPontos(pontuacao.getPontos()-100);
-                    pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
-                }
-                else{
                     pontuacao.setPontos(pontuacao.getPontos()-10);
                     pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontuacao.getPontos());
-                }
             }
         }
     }
     
     public boolean verificarCorretude (JogoTela jogo) {
-        if (tipo1 == null) {
-            System.out.println("Imigrante deve Entrar?"+ imigrante.deveEntrar());
-            return !imigrante.deveEntrar();
-        }  
-        if( (botao1 != null) && (botao2 != null) ){   
-            if (tipo2.equals("validade") && tipo1.equals("data atual")) {
-                if (tipo2.contains("2013") || tipo2.contains("2014") 
-                            || tipo2.contains("2015")) {
-                    return true;
-                }
-            }
-            else {
-                if (tipo1.equals("validade") && tipo2.equals("data atual")) {
-                    if (tipo1.contains("2013") || tipo1.contains("2014") 
-                            || tipo1.contains("2015")) {
-                            return true;
+        imigrante = jogo.getImigrante();
+        if(imigrante != null){
+            if (tipo1 == null) {
+                System.out.println("Imigrante deve Entrar?"+ imigrante.deveEntrar());
+                return !imigrante.deveEntrar();
+            }  
+            if( (botao1 != null) && (botao2 != null) ){   
+                if (tipo2.equals("validade") && tipo1.equals("data atual")) {
+                    if (tipo2.contains("2013") || tipo2.contains("2014") 
+                                || tipo2.contains("2015")) {
+                        return true;
                     }
                 }
-                else if(tipo1.equals("peso") && tipo2.equals("peso")){
-                    if(imigrante.deveEntrar()){
-                        return false;
-                    }
-                }
-                else if (tipo1.equals(tipo2)) {
-                        if (!botao1.getText().equals(botao2.getText())) {
-                            return true;
+                else {
+                    if (tipo1.equals("validade") && tipo2.equals("data atual")) {
+                        if (tipo1.contains("2013") || tipo1.contains("2014") 
+                                || tipo1.contains("2015")) {
+                                return true;
                         }
+                    }
+                    else if(tipo1.equals("peso") && tipo2.equals("peso")){
+                        if(imigrante.deveEntrar()){
+                            return false;
+                        }
+                    }
+                    else if (tipo1.equals(tipo2)) {
+                            if (!botao1.getText().equals(botao2.getText())) {
+                                return true;
+                            }
+                    }
                 }
             }
         }
@@ -390,4 +387,5 @@ public class JogoController {
         tipo1 = null;
         tipo2 = null;
     }
+    
 }

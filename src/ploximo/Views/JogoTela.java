@@ -240,7 +240,7 @@ public class JogoTela extends javax.swing.JFrame {
                 permNomeActionPerformed(evt);
             }
         });
-        permPainel.add(permNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 170, 20));
+        permPainel.add(permNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 190, 20));
 
         permVal.setContentAreaFilled(false);
         permVal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -714,8 +714,13 @@ public class JogoTela extends javax.swing.JFrame {
                 permMiniBotao.setVisible(false);
                 pesoBotao.setVisible(false);  
                 pessoaBotao.setVisible(false);
+                System.out.println(pc.isTerrorista());
                 if (pc.isTerrorista()) {
-                   jogoController.fazerAtaqueTerrorista(this);
+                    String[] pontuacaoArray = pontuacaoLabel.getText().split(" ");
+                    
+                    jogoController.fazerAtaqueTerrorista(this);
+                    pontos.setPontos(pontos.getPontos()-110);
+                    pontuacaoLabel.setText(pontuacaoArray[0]+ " "+ pontos.getPontos());
                }
         }
     }//GEN-LAST:event_aprovarBotaoActionPerformed

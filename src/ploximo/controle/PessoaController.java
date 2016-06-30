@@ -35,10 +35,12 @@ public class PessoaController {
         String motivo = Motivo.gerar();
         String duracao = Duracao.gerar();
         deveEntrar = calculaDeveEntrar(r);
-        if(deveEntrar){
-            terrorista = calcularTerrorista(r);
+        if(deveEntrar){ // 50%
+            terrorista = calcularTerrorista(r); //12,5% de chance de ser terrorista
         }
-        terrorista = false;
+        else{
+            terrorista = false;
+        }
         codigo = Codigo.gerar();
         String nome;
         if(sexo == 'H'){
@@ -74,9 +76,9 @@ public class PessoaController {
         return r.gerarBool();
     }
     
-    private boolean calcularTerrorista(Randomizador r) { // 12,5% (1/8) de chance de ser terrorista 
+    private boolean calcularTerrorista(Randomizador r) { //  25% de chance
         boolean deveSerTerrorista = true;
-        for(int i=0; i<3;i++){
+        for(int i=0; i<2;i++){
             if(r.gerarBool()){
                 deveSerTerrorista = false; // Entrei aqui, logo vai dar false
                 break; // não preciso de outra iteração

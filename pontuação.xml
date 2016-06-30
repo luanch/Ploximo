@@ -1,137 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_91" class="java.beans.XMLDecoder">
- <array class="ploximo.controle.Pontuacao" length="14">
+ <array class="ploximo.controle.Pontuacao" length="3">
   <void index="0">
    <object class="ploximo.controle.Pontuacao">
     <void property="nome">
-     <string>a</string>
+     <string>luan</string>
     </void>
     <void property="pontos">
-     <int>-1</int>
+     <int>40</int>
     </void>
    </object>
   </void>
   <void index="1">
    <object class="ploximo.controle.Pontuacao">
     <void property="nome">
-     <string>b</string>
+     <string>Luan</string>
     </void>
     <void property="pontos">
-     <int>4</int>
+     <int>10</int>
     </void>
    </object>
   </void>
   <void index="2">
    <object class="ploximo.controle.Pontuacao">
     <void property="nome">
-     <string>c</string>
+     <string>Luan</string>
     </void>
     <void property="pontos">
-     <int>-3</int>
-    </void>
-   </object>
-  </void>
-  <void index="3">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>d</string>
-    </void>
-    <void property="pontos">
-     <int>-1</int>
-    </void>
-   </object>
-  </void>
-  <void index="4">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>e</string>
-    </void>
-    <void property="pontos">
-     <int>-3</int>
-    </void>
-   </object>
-  </void>
-  <void index="5">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>f</string>
-    </void>
-    <void property="pontos">
-     <int>-2</int>
-    </void>
-   </object>
-  </void>
-  <void index="6">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>Fernando</string>
-    </void>
-    <void property="pontos">
-     <int>3</int>
-    </void>
-   </object>
-  </void>
-  <void index="7">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>fernando</string>
-    </void>
-    <void property="pontos">
-     <int>-3</int>
-    </void>
-   </object>
-  </void>
-  <void index="8">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>e agora</string>
-    </void>
-   </object>
-  </void>
-  <void index="9">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>z</string>
-    </void>
-   </object>
-  </void>
-  <void index="10">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>z1</string>
-    </void>
-    <void property="pontos">
-     <int>-3</int>
-    </void>
-   </object>
-  </void>
-  <void index="11">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>z2</string>
-    </void>
-    <void property="pontos">
-     <int>-3</int>
-    </void>
-   </object>
-  </void>
-  <void index="12">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>zz</string>
-    </void>
-    <void property="pontos">
-     <int>-3</int>
-    </void>
-   </object>
-  </void>
-  <void index="13">
-   <object class="ploximo.controle.Pontuacao">
-    <void property="nome">
-     <string>jogador</string>
-    </void>
-    <void property="pontos">
-     <int>10</int>
+     <int>-90</int>
     </void>
    </object>
   </void>
