@@ -38,7 +38,7 @@
   <void index="14">
    <object class="ploximo.controle.Pontuacao">
     <void property="nome">
-     <string>Player1</string>
+     <string>Luan</string>
     </void>
     <void property="pontos">
      <int>120</int>
