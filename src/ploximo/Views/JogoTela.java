@@ -696,48 +696,25 @@ public class JogoTela extends javax.swing.JFrame {
                 jogoController.calcularPontuacao(this,this.pontos);
                 temPessoa = false;   
             
-            try {
-                jogoController.aprovarImigrante(this);
-            } catch (Throwable ex) {
-                Logger.getLogger(JogoTela.class.getName()).log(Level.SEVERE,
-                                                                    null, ex);
-            }
-            
-            this.passPainel.setVisible(false);
-            this.permPainel.setVisible(false);
-            this.idPainel.setVisible(false);
-            passMiniBotao.setVisible(false);
-            idMiniBotao.setVisible(false);
-            permMiniBotao.setVisible(false);
-            pesoBotao.setVisible(false);  
-            pessoaBotao.setVisible(false);
-            if (pc.isTerrorista()) {
-               ataqueLabel.setVisible(true);
-               ataqueLabel.setIcon(
-                            new ImageIcon("src/ploximo/Imagens/ataque.gif"));
-               JogoTela jogo = this;
-               ploximoBotao.setEnabled(false);
-                 new java.util.Timer().schedule( 
-                 new java.util.TimerTask() {
-                     @Override
-                     public void run() {
-                         ataqueLabel.setVisible(false);
-                         
-                         /*se acontecer um ataque terrorista,
-                         o jogador é punido com menos dois pontos*/
-                         jogoController.nomearScore(pontos, 
-                                    jogoController.insertNome());
-                         System.out.println("Pontos:" + pontos.getPontos());
-                         
-                         //jogoController.trocarDeTela(jogo, new FimDoDia(pontos));
-                         ploximoBotao.setEnabled(true);
-                     }
-                 }, 
-                 5000 
-         );
-                jogoController.ataqueTerrista(this,pontos);
-           }
-            }
+                try {
+                    jogoController.aprovarImigrante(this);
+                } catch (Throwable ex) {
+                    Logger.getLogger(JogoTela.class.getName()).log(Level.SEVERE,
+                                                                        null, ex);
+                }
+
+                this.passPainel.setVisible(false);
+                this.permPainel.setVisible(false);
+                this.idPainel.setVisible(false);
+                passMiniBotao.setVisible(false);
+                idMiniBotao.setVisible(false);
+                permMiniBotao.setVisible(false);
+                pesoBotao.setVisible(false);  
+                pessoaBotao.setVisible(false);
+                if (pc.isTerrorista()) {
+                   jogoController.fazerAtaqueTerrorista(this);
+               }
+        }
     }//GEN-LAST:event_aprovarBotaoActionPerformed
 
     private void idFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFotoActionPerformed
@@ -1119,5 +1096,12 @@ public class JogoTela extends javax.swing.JFrame {
     public void setPontuacaoLabel(JLabel pontuacaoLabel) {
         this.pontuacaoLabel = pontuacaoLabel;
     }
-    
+
+    public Pontuacao getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(Pontuacao pontos) {
+        this.pontos = pontos;
+    }
 }

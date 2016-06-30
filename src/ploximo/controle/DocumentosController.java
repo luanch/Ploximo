@@ -6,6 +6,8 @@
 package ploximo.controle;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import ploximo.Models.Identidade;
 import ploximo.Models.Passaporte;
 import ploximo.Models.Permissao;
@@ -127,8 +129,11 @@ public class DocumentosController {
     private String alterarPeso(String stringPeso) {
         String[] arrayPeso = stringPeso.split(" ");
         double peso = Double.valueOf(arrayPeso[0].replace(',', '.'));
-        peso -= (peso*0.1);
-        String stringPesoAlterado = String.valueOf(peso).replace('.', ',') + arrayPeso[1];
+        peso -= (peso*0.1);        
+        BigDecimal bd = new BigDecimal(peso).setScale(2, RoundingMode.HALF_EVEN);
+        peso = bd.doubleValue();
+        String stringPesoAlterado = String.valueOf(peso).replace('.', ',')
+                                                        +" "+ arrayPeso[1];
         return stringPesoAlterado;
     }
 
