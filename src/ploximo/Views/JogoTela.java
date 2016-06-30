@@ -52,7 +52,7 @@ public class JogoTela extends javax.swing.JFrame {
         passFoto.setEnabled(false);
         pessoaBotao.setEnabled(false);
         
-        Cronometro cronometro = new Cronometro(this);
+        Cronometro cronometro = new Cronometro(this,this.pontos);
         cronometro.start();
         
         botoes.add(aprovarBotao);
