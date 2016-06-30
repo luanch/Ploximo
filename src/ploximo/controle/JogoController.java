@@ -99,6 +99,40 @@ public class JogoController {
         }
     }
     
+    public boolean verificarCorretude (JogoTela jogo) {
+        if (tipo1 == null) {
+            System.out.println("Imigrante deve Entrar?"+ imigrante.deveEntrar());
+            return !imigrante.deveEntrar();
+        }  
+        if( (botao1 != null) && (botao2 != null) ){   
+            if (tipo2.equals("validade") && tipo1.equals("data atual")) {
+                if (tipo2.contains("2013") || tipo2.contains("2014") 
+                            || tipo2.contains("2015")) {
+                    return true;
+                }
+            }
+            else {
+                if (tipo1.equals("validade") && tipo2.equals("data atual")) {
+                    if (tipo1.contains("2013") || tipo1.contains("2014") 
+                            || tipo1.contains("2015")) {
+                            return true;
+                    }
+                }
+                else if(tipo1.equals("peso") && tipo2.equals("peso")){
+                    if(imigrante.deveEntrar()){
+                        return false;
+                    }
+                }
+                else if (tipo1.equals(tipo2)) {
+                        if (!botao1.getText().equals(botao2.getText())) {
+                            return true;
+                        }
+                }
+            }
+        }
+        return false;
+    }
+    
     public void chamarImigrante(JogoTela jogo) {
         imigrante = jogo.getImigrante();
         if (imigrante == null) {
