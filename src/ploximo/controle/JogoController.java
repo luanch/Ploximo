@@ -141,6 +141,7 @@ public class JogoController {
         if (imigrante == null) {
              try {
                 imigrante = jogo.getPessoaController().gerar(); 
+                jogo.setImigrante(imigrante);
 
                 if (!imigrante.deveEntrar()) {
                     imigrante = dc.determinarDocumentoErrado(jogo, imigrante);
@@ -383,7 +384,7 @@ public class JogoController {
 
     private void zerarInformacoesImigrante() {
         for(JButton botao: botoesClicaveis){
-            botao.setSelected(false);
+            botao.setContentAreaFilled(false);
         }
         botao1 = null;
         botao2 = null;
