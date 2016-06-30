@@ -81,12 +81,12 @@ public class SerializacaoDaPontuacao {
                 score = (Pontuacao[]) xmlDecoder.readObject();
                 Pontuacao aux; 
                  mscores = new String [score.length][2];
-                for(int i=0;i<score.length-1;i++){
-                    for(int j=1;j<score.length;j++){
-                        if(score[i].getPontos() < score[j].getPontos()){
-                            aux = score[i];
-                            score[i] = score[j];
-                            score[j] = aux;
+                for(int i=0;i < score.length;i++){
+                    for(int j=0;j < score.length;j++){
+                        if(score[i].getPontos() > score[j].getPontos()){
+                            aux = score[j];
+                            score[j] = score[i];
+                            score[i] = aux;
                         }            
                     }
                 }

@@ -6,7 +6,9 @@
 package ploximo.Views;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.EventObject;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 import ploximo.controle.JogoController;
 import ploximo.controle.SerializacaoDaPontuacao;
 
@@ -29,21 +31,20 @@ public class HighScores extends javax.swing.JFrame {
         //jTextArea1 = new JTextArea(); 
         SerializacaoDaPontuacao sp = new SerializacaoDaPontuacao();
         String [][] matriz = sp.LerSerialização();
-        jTextArea1.append("|----Nome----|----Pontos----|\n");
         
-        for(int i = 0;i<matriz.length;i++){
-            String score = "|**" + matriz[i][0] + "**|**" + matriz[i][1] + "**|";
-            jTextArea1.append(score.replaceAll("null",""));
-            jTextArea1.append("\n");
-        }
         
-        jTextArea1.append("|------------|------------|");
+        
         this.setSize(fundo.getWidth(), fundo.getHeight() + 28);
-
        highScoresTabela.setRowHeight(30);
        highScoresTabela.getTableHeader().setFont(new Font("PixelPlay", Font.BOLD, 18));
+       
+       for(int i = 0;i<matriz.length;i++){
+           highScoresTabela.setValueAt((Object) matriz[i][0], i, 0);
+           highScoresTabela.setValueAt((Object) matriz[i][1].replaceAll("null",""), i, 1);
+       }
+       
+       
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,17 +66,64 @@ public class HighScores extends javax.swing.JFrame {
         highScoresTabela.setFont(new java.awt.Font("PixelPlay", 0, 18)); // NOI18N
         highScoresTabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Bianca",  new Integer(100)},
-                {"Fernando",  new Integer(100)},
-                {"Luan",  new Integer(100)},
-                {"Pedro",  new Integer(100)}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
                 "Nome", "Score"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false
@@ -95,7 +143,7 @@ public class HighScores extends javax.swing.JFrame {
         jScrollPane1.setViewportView(highScoresTabela);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(470, 240, 210, 120);
+        jScrollPane1.setBounds(510, 220, 210, 160);
 
         menuBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
