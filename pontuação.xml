@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_91" class="java.beans.XMLDecoder">
+<<<<<<< HEAD
  <array class="ploximo.controle.Pontuacao" length="3">
+=======
+ <array class="ploximo.controle.Pontuacao" length="15">
+>>>>>>> d296fc1bf6a75401bf12fe56685d3ac61b4fde66
   <void index="0">
    <object class="ploximo.controle.Pontuacao">
     <void property="nome">
@@ -28,6 +32,16 @@
     </void>
     <void property="pontos">
      <int>-90</int>
+    </void>
+   </object>
+  </void>
+  <void index="14">
+   <object class="ploximo.controle.Pontuacao">
+    <void property="nome">
+     <string>Player1</string>
+    </void>
+    <void property="pontos">
+     <int>120</int>
     </void>
    </object>
   </void>

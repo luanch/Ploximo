@@ -38,7 +38,7 @@ public class HighScores extends javax.swing.JFrame {
        highScoresTabela.setRowHeight(30);
        highScoresTabela.getTableHeader().setFont(new Font("PixelPlay", Font.BOLD, 18));
        
-       for(int i = 0;i<matriz.length;i++){
+       for(int i = 0;i<10;i++){
            highScoresTabela.setValueAt((Object) matriz[i][0], i, 0);
            highScoresTabela.setValueAt((Object) matriz[i][1].replaceAll("null",""), i, 1);
        }
@@ -66,46 +66,6 @@ public class HighScores extends javax.swing.JFrame {
         highScoresTabela.setFont(new java.awt.Font("PixelPlay", 0, 18)); // NOI18N
         highScoresTabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},

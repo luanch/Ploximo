@@ -1,3 +1,21 @@
+<<<<<<< HEAD
 luan,40
 Luan,10
 Luan,-90
+=======
+a,-1
+b,4
+c,-3
+d,-1
+e,-3
+f,-2
+Fernando,3
+fernando,-3
+e agora,0
+z,0
+z1,-3
+z2,-3
+zz,-3
+jogador,10
+Player1,120
+>>>>>>> d296fc1bf6a75401bf12fe56685d3ac61b4fde66
